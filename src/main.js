@@ -12,4 +12,16 @@ function getCelebrity() {
   return celebrities[getRandomInt(celebrities.length)];
 }
 
-console.log(getCelebrity());
+// Restarts counter
+function getCounter() {
+  let counter = 9;
+  return counter;
+}
+
+// Starts the game
+function startGame() {
+  getCelebrity();
+  getCounter();
+}
+
+// console.log(getCelebrity());
