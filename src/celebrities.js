@@ -1,5 +1,11 @@
-// Celebrities list
+// export celebrities array
+module.exports = {
+  exportCeleb: () => {
+    return celebrities;
+  },
+};
 
+// Celebrities list
 const celebrities = [
   {
     name: 'Isaac Newton',
@@ -207,5 +213,6 @@ const celebrities = [
   },
 ]
 
-// console.log(celebrities.length);
-// console.log(celebrities[9].name);
+
+
+
