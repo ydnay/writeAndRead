@@ -190,8 +190,8 @@ const celebrities = [
     music: true,
     literature: false,
     dance: false,
-    fields: ['writer', 'novelist'],
-    akas: ['Miguel de Cervantes y Saavedra', 'Miguel de Cervantes', 'Miguel Cervantes', 'Cervantes', 'El manco de Lepanto'],
+    fields: ['singer', 'tenor'],
+    akas: ['Luciano Pavarotti', 'Pavarotti'],
   },
   {
     name: 'Marie Curie',

@@ -24,4 +24,9 @@ function startGame() {
   getCounter();
 }
 
+// Guess name of celebrity
+// function guessCelebrity(name) {
+
+// }
+
 // console.log(getCelebrity());
