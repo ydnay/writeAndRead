@@ -137,7 +137,10 @@ const isBlack = cel => {
 }
 
 // Check if peninsular
+const isPeninsular = cel => {
+  return cel.peninsular;
+}
 
 
 const celebrity = getCelebrity();
-console.log(celebrity.name, isMediterranean(celebrity));
+console.log(celebrity.name, guessCountry(celebrity, 'France'));
