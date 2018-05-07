@@ -16,7 +16,7 @@ const getCelebrity = () => {
 const isAfterMiddleAges = cel => {
   let res = false;
   cel.centuries.forEach(elem => {
-    if(elem > 15) {
+    if (elem > 15) {
       res = true;
     }
   });
@@ -29,5 +29,41 @@ const isAfterFrenchRev = cel => {
   return cel.born > 1789;
 }
 
+// Check if celebrity existed on 19th century
+const is19Cent = cel => {
+  let res = false;
+  cel.centuries.forEach(elem => {
+    if (elem === 19) {
+      res = true;
+    }
+  });
+
+  return res;
+}
+
+// Check if celebrity existed on 20th century
+const is20Cent = cel => {
+  let res = false;
+  cel.centuries.forEach(elem => {
+    if (elem === 20) {
+      res = true;
+    }
+  });
+
+  return res;
+}
+
+// Check if celebrity existed on 21st century
+const is21Cent = cel => {
+  let res = false;
+  cel.centuries.forEach(elem => {
+    if (elem === 21) {
+      res = true;
+    }
+  });
+
+  return res;
+}
+
 const celebrity = getCelebrity();
-console.log(celebrity.name, isAfterFrenchRev(celebrity));
+console.log(celebrity.name, is19Cent(celebrity), is20Cent(celebrity), is21Cent(celebrity));
