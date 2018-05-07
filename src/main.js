@@ -12,7 +12,7 @@ const getCelebrity = () => {
   return celebrities[getRandomInt(celebrities.length)];
 }
 
-// 
+// Check if celebrity existed after middle ages
 const isAfterMiddleAges = cel => {
   let res = false;
   cel.centuries.forEach(elem => {
@@ -24,5 +24,10 @@ const isAfterMiddleAges = cel => {
   return res;
 };
 
+// Check if celebrity existed after French Revolution
+const isAfterFrenchRev = cel => {
+  return cel.born > 1789;
+}
+
 const celebrity = getCelebrity();
-console.log(celebrity.name, isAfterMiddleAges(celebrity));
+console.log(celebrity.name, isAfterFrenchRev(celebrity));
