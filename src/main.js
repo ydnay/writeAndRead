@@ -12,6 +12,7 @@ const getCelebrity = () => {
   return celebrities[getRandomInt(celebrities.length)];
 }
 
+// Timeline functions
 // Check if celebrity existed after middle ages
 const isAfterMiddleAges = cel => {
   let res = false;
@@ -64,6 +65,18 @@ const is21Cent = cel => {
 
   return res;
 }
+// End of Timeline functions
+
+// Geographic functions
+// Check if celebrity is from Eurasia
+const isFromEurasia = cel => {
+  return cel.land === 'Eurasia'
+}
+
+// Check if celebrity is from America
+const isFromAmerica = cel => {
+  return cel.land === 'America'
+}
 
 const celebrity = getCelebrity();
-console.log(celebrity.name, is19Cent(celebrity), is20Cent(celebrity), is21Cent(celebrity));
+console.log(celebrity.name, isFromEurasia(celebrity), isFromAmerica(celebrity));
