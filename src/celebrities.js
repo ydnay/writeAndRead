@@ -211,6 +211,25 @@ const celebrities = [
     fields: ['physicist', 'chemist'],
     akas: ['Marie Sklodowska Curie', 'Maria Salomea Sklodowska', 'Marie Curie', 'Maria Curie'],
   },
+  {
+    name: 'Nelson Mandela',
+    fictional: false,
+    born: 1918,
+    died: 2013,
+    centuries: [20, 21],
+    sex: 'male',
+    land: 'Africa',
+    continent: 'Africa',
+    subSaharan: true,
+    country:'South Africa',
+    language: 'English',
+    coasts: true,
+    peninsular: true,
+    oceans: ['Atlatic', 'Indian'],
+    mainField: 'politics',
+    fields: ['political leader', 'president', 'philanthropist'],
+    akas: ['Nelson Mandela', 'Mandela'],
+  },
 ]
 
 

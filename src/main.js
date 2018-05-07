@@ -67,7 +67,8 @@ const is21Cent = cel => {
 }
 // End of Timeline functions
 
-// Geographic functions
+// Geographic 
+// Landmass functions
 // Check if celebrity is from Eurasia
 const isFromEurasia = cel => {
   return cel.land === 'Eurasia'
@@ -78,5 +79,10 @@ const isFromAmerica = cel => {
   return cel.land === 'America'
 }
 
+// Check if celebrity is different from Eurasia or America
+const isFromOtherLand = cel => {
+  return cel.land !== 'Eurasia' && cel.land !== 'America';
+}
+
 const celebrity = getCelebrity();
-console.log(celebrity.name, isFromEurasia(celebrity), isFromAmerica(celebrity));
+console.log(celebrity.name, isFromEurasia(celebrity), isFromAmerica(celebrity), isFromOtherLand(celebrity));
