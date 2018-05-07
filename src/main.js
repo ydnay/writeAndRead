@@ -84,5 +84,36 @@ const isFromOtherLand = cel => {
   return cel.land !== 'Eurasia' && cel.land !== 'America';
 }
 
+// Continent functions
+const isEuropean = cel => {
+  return cel.continent === 'Europe';
+}
+
+const isNorthAmerican = cel => {
+  return cel.continent === 'North America';
+}
+
+const isSouthAmerican = cel => {
+  return cel.continent === 'South America';
+}
+
+const isCentralAmerican = cel => {
+  return cel.continent === 'Central America and the Caribbean';
+}
+
+const isAfrican = cel => {
+  return cel.continent === 'Africa';
+}
+
+const isAsian = cel => {
+  return cel.continent === 'Asia';
+}
+
+const isOceanian = cel => {
+  return cel.continent === 'Oceania';
+}
+
+
+
 const celebrity = getCelebrity();
-console.log(celebrity.name, isFromEurasia(celebrity), isFromAmerica(celebrity), isFromOtherLand(celebrity));
+console.log(celebrity.name, isEuropean(celebrity), isNorthAmerican(celebrity), isCentralAmerican(celebrity), isSouthAmerican(celebrity), isAfrican(celebrity), isAsian(celebrity), isOceanian(celebrity));
