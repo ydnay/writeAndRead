@@ -8,25 +8,21 @@ function getRandomInt(max) {
 }
 
 // Select a random celebrity
-function getCelebrity() {
+const getCelebrity = () => {
   return celebrities[getRandomInt(celebrities.length)];
 }
 
-// Restarts counter
-function getCounter() {
-  let counter = 9;
-  return counter;
-}
+// 
+const isAfterMiddleAges = cel => {
+  let res = false;
+  cel.centuries.forEach(elem => {
+    if(elem > 15) {
+      res = true;
+    }
+  });
 
-// Starts the game
-function startGame() {
-  getCelebrity();
-  getCounter();
-}
+  return res;
+};
 
-// Guess name of celebrity
-// function guessCelebrity(name) {
-
-// }
-
-// console.log(getCelebrity());
+const celebrity = getCelebrity();
+console.log(celebrity.name, isAfterMiddleAges(celebrity));
