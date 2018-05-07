@@ -84,7 +84,7 @@ const isFromOtherLand = cel => {
   return cel.land !== 'Eurasia' && cel.land !== 'America';
 }
 
-// Continent functions
+// Finding Continent functions
 const isEuropean = cel => {
   return cel.continent === 'Europe';
 }
@@ -113,7 +113,31 @@ const isOceanian = cel => {
   return cel.continent === 'Oceania';
 }
 
+// Finding an European country
+// Check if coastal
+const isCoastal = cel => {
+  return cel.coasts;
+}
+
+// Find sea
+const isMediterranean = cel => {
+  return cel.sea === 'Mediterranean';
+}
+
+const isNorth = cel => {
+  return cel.sea === 'North';
+}
+
+const isBaltic = cel => {
+  return cel.sea === 'Baltic';
+}
+
+const isBlack = cel => {
+  return cel.sea === 'Black';
+}
+
+// Check if peninsular
 
 
 const celebrity = getCelebrity();
-console.log(celebrity.name, isEuropean(celebrity), isNorthAmerican(celebrity), isCentralAmerican(celebrity), isSouthAmerican(celebrity), isAfrican(celebrity), isAsian(celebrity), isOceanian(celebrity));
+console.log(celebrity.name, isMediterranean(celebrity));
