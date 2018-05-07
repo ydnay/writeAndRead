@@ -141,6 +141,10 @@ const isPeninsular = cel => {
   return cel.peninsular;
 }
 
+// Guess country
+const guessCountry = (cel, country) => {
+  return cel.country === country;
+}
 
 const celebrity = getCelebrity();
 console.log(celebrity.name, guessCountry(celebrity, 'France'));
