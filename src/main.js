@@ -12,7 +12,7 @@ const getCelebrity = () => {
   return celebrities[getRandomInt(celebrities.length)];
 }
 
-// Timeline functions
+// Timeline functions 
 // Check if celebrity existed after middle ages
 const isAfterMiddleAges = cel => {
   let res = false;
@@ -147,12 +147,12 @@ const isPeninsular = cel => {
 // Finding a North American country
 // Guess! Just 3 of them...
 
-// Finding a Cental Amercian Country
+// Finding a Cental Amercian country
 const isAnIsland = cel => {
   return cel.island; // if false => Isthmian Central America
 }
 
-// Finding a South Amercian Country
+// Finding a South Amercian country
 // Reuse isCoastal();
 
 // Finding coast to ocean
@@ -178,10 +178,18 @@ const hasPacific = cel => {
   return res;
 }
 
+// Finding an African country
+// Check if subSaharan
+const isSubSaharan = cel => {
+  return cel.subSaharan; // filter posible country list
+}
+// Rsuse isCoastal();
+// Reuse hasAtlantic();
+
 // Guess country
 const guessCountry = (cel, country) => {
   return cel.country === country;
 }
 
 const celebrity = getCelebrity();
-console.log(celebrity.name, hasPacific(celebrity));
+console.log(celebrity.name, isSubSaharan(celebrity));
