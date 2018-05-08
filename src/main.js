@@ -83,10 +83,16 @@ const isFromAmerica = cel => {
 const isFromOtherLand = cel => {
   return cel.land !== 'Eurasia' && cel.land !== 'America';
 }
+// End of landmass.
 
-// Finding Continent functions
+// Finding Continent functions, filtering landmass.
 const isEuropean = cel => {
-  return cel.continent === 'Europe';
+  return cel.continent === 'Europe'; // if false => is Asian
+}
+
+// Check if Latin American
+const isLatinAmerican = cel => {
+  return cel.latinAmerica; // if false => is North America
 }
 
 const isNorthAmerican = cel => {
@@ -105,10 +111,6 @@ const isAfrican = cel => {
   return cel.continent === 'Africa';
 }
 
-const isAsian = cel => {
-  return cel.continent === 'Asia';
-}
-
 const isOceanian = cel => {
   return cel.continent === 'Oceania';
 }
@@ -116,10 +118,10 @@ const isOceanian = cel => {
 // Finding an European country
 // Check if coastal
 const isCoastal = cel => {
-  return cel.coasts;
+  return cel.coasts; // filter posible country list
 }
 
-// Find sea
+// Find sea 
 const isMediterranean = cel => {
   return cel.sea === 'Mediterranean';
 }
@@ -140,6 +142,41 @@ const isBlack = cel => {
 const isPeninsular = cel => {
   return cel.peninsular;
 }
+// End of Europe
+
+// Finding a North American country
+// Guess! Just 3 of them...
+
+// Finding a Cental Amercian Country
+const isAnIsland = cel => {
+  return cel.island; // if false => Isthmian Central America
+}
+
+// Finding a South Amercian Country
+// Reuse isCoastal();
+
+// Finding coast to ocean
+const hasAtlantic = cel => {
+  let res = false;
+  cel.oceans.forEach(oce => {
+    if(oce === 'Atlantic') {
+      res = true;
+    }
+  });
+
+  return res;
+}
+
+const hasPacific = cel => {
+  let res = false;
+  cel.oceans.forEach(oce => {
+    if(oce === 'Pacific') {
+      res = true;
+    }
+  });
+
+  return res;
+}
 
 // Guess country
 const guessCountry = (cel, country) => {
@@ -147,4 +184,4 @@ const guessCountry = (cel, country) => {
 }
 
 const celebrity = getCelebrity();
-console.log(celebrity.name, guessCountry(celebrity, 'France'));
+console.log(celebrity.name, hasPacific(celebrity));
