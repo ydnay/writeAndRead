@@ -1,6 +1,9 @@
 // import celebrities array
 const importedCeleb = require("./celebrities.js"); // ES2016 import does't work on backend without express, babel, etc
 const celebrities = importedCeleb.exportCeleb();
+// import countries
+const importedCountries = require("./countries.js");
+const europeCountries = importedCountries.exportEuroCont();
 
 // Select a random number
 function getRandomInt(max) {
@@ -192,4 +195,5 @@ const guessCountry = (cel, country) => {
 }
 
 const celebrity = getCelebrity();
-console.log(celebrity.name, isSubSaharan(celebrity));
+// console.log(celebrity.name, isSubSaharan(celebrity));
+console.log(europeCountries.length);

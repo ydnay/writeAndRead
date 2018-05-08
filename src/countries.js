@@ -1,3 +1,11 @@
+// export countries
+module.exports = {
+  exportEuroCont: () => {
+    return europeCountries;
+  },
+};
+
+
 // Countries Lists
 // Europe
 const europeCountries = [
@@ -182,5 +190,3 @@ const europeCountries = [
     coast: ['North', 'Celtic'],
   },
 ]
-
-console.log(europeCountries.length);
