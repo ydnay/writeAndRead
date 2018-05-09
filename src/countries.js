@@ -288,6 +288,15 @@ const centralAmercianCountries = [
     isle: true,
     coast: ['Caribbean'],
   },
+  {
+    name: 'Jamaica',
+    language: 'English',
+    landmass: 'America',
+    continent: 'Central America',
+    latinAmerica: false,
+    isle: true,
+    coast: ['Caribbean'],
+  },
 ]
 
 const southAmericanCountries = [
