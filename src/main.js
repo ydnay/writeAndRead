@@ -4,6 +4,8 @@ const celebrities = importedCeleb.exportCeleb();
 // import countries
 const importedCountries = require("./countries.js");
 const europeCountries = importedCountries.exportEuroCont();
+const centralAmericanCountries = importedCountries.exportCentAmerCont();
+const southAmericanCountries = importedCountries.exportSouthAmerCont();
 
 // Select a random number
 function getRandomInt(max) {
@@ -196,4 +198,4 @@ const guessCountry = (cel, country) => {
 
 const celebrity = getCelebrity();
 // console.log(celebrity.name, isSubSaharan(celebrity));
-console.log(europeCountries.length);
+console.log(southAmericanCountries[6].name);

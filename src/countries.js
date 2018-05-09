@@ -3,6 +3,12 @@ module.exports = {
   exportEuroCont: () => {
     return europeCountries;
   },
+  exportCentAmerCont: () => {
+    return centralAmercianCountries;
+  },
+  exportSouthAmerCont: () => {
+    return southAmericanCountries;
+  }
 };
 
 
@@ -284,3 +290,113 @@ const centralAmercianCountries = [
   },
 ]
 
+const southAmericanCountries = [
+  {
+    name: 'Colombia',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coast: ['Pacific', 'Atlantic'],
+  },
+  {
+    name: 'Venezuela',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coast: ['Atlantic'],
+  },
+  {
+    name: 'Brazil',
+    language: 'Portuguese',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coast: ['Atlantic'],
+  },
+  {
+    name: 'Ecuador',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coast: ['Pacific'],
+  },
+  {
+    name: 'Peru',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coast: ['Pacific'],
+  },
+  {
+    name: 'Bolivia',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: false,
+    coast: [],
+  },
+  {
+    name: 'Paraguay',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: false,
+    coast: [],
+  },
+  {
+    name: 'Chile',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coast: ['Pacific'],
+  },
+  {
+    name: 'Argentina',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coast: ['Atlantic'],
+  },
+  {
+    name: 'Uruguay',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coast: ['Atlantic'],
+  },
+  {
+    name: 'Guyana',
+    language: 'English',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: false,
+    coastal: true,
+    coast: ['Atlantic'],
+  },
+  {
+    name: 'Suriname',
+    language: 'Dutch',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: false,
+    coastal: true,
+    coast: ['Atlantic'],
+  },
+]
