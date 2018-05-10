@@ -13,13 +13,13 @@ function getRandomInt(max) {
 }
 
 // Select a random celebrity
-const getCelebrity = () => {
+function getCelebrity() {
   return celebrities[getRandomInt(celebrities.length)];
 }
 
 // Timeline functions 
 // Check if celebrity existed after middle ages
-const isAfterMiddleAges = cel => {
+function isAfterMiddleAges(cel) {
   let res = false;
   cel.centuries.forEach(elem => {
     if (elem > 15) {
@@ -31,12 +31,12 @@ const isAfterMiddleAges = cel => {
 };
 
 // Check if celebrity existed after French Revolution
-const isAfterFrenchRev = cel => {
+function isAfterFrenchRev(cel) {
   return cel.born > 1789;
 }
 
 // Check if celebrity existed on 19th century
-const is19Cent = cel => {
+function is19Cent(cel) {
   let res = false;
   cel.centuries.forEach(elem => {
     if (elem === 19) {
@@ -48,7 +48,7 @@ const is19Cent = cel => {
 }
 
 // Check if celebrity existed on 20th century
-const is20Cent = cel => {
+function is20Cent(cel) {
   let res = false;
   cel.centuries.forEach(elem => {
     if (elem === 20) {
@@ -60,7 +60,7 @@ const is20Cent = cel => {
 }
 
 // Check if celebrity existed on 21st century
-const is21Cent = cel => {
+function is21Cent(cel) {
   let res = false;
   cel.centuries.forEach(elem => {
     if (elem === 21) {
@@ -75,76 +75,76 @@ const is21Cent = cel => {
 // Geographic 
 // Landmass functions
 // Check if celebrity is from Eurasia
-const isFromEurasia = cel => {
+function isFromEurasia(cel) {
   return cel.land === 'Eurasia'
 }
 
 // Check if celebrity is from America
-const isFromAmerica = cel => {
+function isFromAmerica(cel) {
   return cel.land === 'America'
 }
 
 // Check if celebrity is different from Eurasia or America
-const isFromOtherLand = cel => {
+function isFromOtherLand(cel) {
   return cel.land !== 'Eurasia' && cel.land !== 'America';
 }
 // End of landmass.
 
 // Finding Continent functions, filtering landmass.
-const isEuropean = cel => {
+function isEuropean(cel) {
   return cel.continent === 'Europe'; // if false => is Asian
 }
 
 // Check if Latin American
-const isLatinAmerican = cel => {
+function isLatinAmerican(cel) {
   return cel.latinAmerica; // if false => is North America
 }
 
-const isNorthAmerican = cel => {
+function isNorthAmerican(cel) {
   return cel.continent === 'North America';
 }
 
-const isSouthAmerican = cel => {
+function isSouthAmerican(cel) {
   return cel.continent === 'South America';
 }
 
-const isCentralAmerican = cel => {
+function isCentralAmerican(cel) {
   return cel.continent === 'Central America and the Caribbean';
 }
 
-const isAfrican = cel => {
+function isAfrican(cel) {
   return cel.continent === 'Africa';
 }
 
-const isOceanian = cel => {
+function isOceanian(cel) {
   return cel.continent === 'Oceania';
 }
 
 // Finding an European country
 // Check if coastal
-const isCoastal = cel => {
+function isCoastal(cel) {
   return cel.coasts; // filter posible country list
 }
 
 // Find sea 
-const isMediterranean = cel => {
+function isMediterranean(cel) {
   return cel.sea === 'Mediterranean';
 }
 
-const isNorth = cel => {
+function isNorth(cel) {
   return cel.sea === 'North';
 }
 
-const isBaltic = cel => {
+function isBaltic(cel) {
   return cel.sea === 'Baltic';
 }
 
-const isBlack = cel => {
+function isBlack(cel) {
   return cel.sea === 'Black';
 }
 
 // Check if peninsular
-const isPeninsular = cel => {
+function isPeninsular(cel) {
   return cel.peninsular;
 }
 // End of Europe
@@ -153,7 +153,7 @@ const isPeninsular = cel => {
 // Guess! Just 3 of them...
 
 // Finding a Cental Amercian country
-const isAnIsland = cel => {
+function isAnIsland(cel) {
   return cel.island; // if false => Isthmian Central America
 }
 
@@ -161,7 +161,7 @@ const isAnIsland = cel => {
 // Reuse isCoastal();
 
 // Finding coast to ocean
-const hasAtlantic = cel => {
+function hasAtlantic(cel) {
   let res = false;
   cel.oceans.forEach(oce => {
     if(oce === 'Atlantic') {
@@ -172,7 +172,7 @@ const hasAtlantic = cel => {
   return res;
 }
 
-const hasPacific = cel => {
+function hasPacific(cel) {
   let res = false;
   cel.oceans.forEach(oce => {
     if(oce === 'Pacific') {
@@ -185,17 +185,27 @@ const hasPacific = cel => {
 
 // Finding an African country
 // Check if subSaharan
-const isSubSaharan = cel => {
+function isSubSaharan(cel) {
   return cel.subSaharan; // filter posible country list
 }
 // Rsuse isCoastal();
 // Reuse hasAtlantic();
 
+// Guess celebrity
+function guessCelebrity(cel, name) {
+  return cel.name === name;
+}
+
 // Guess country
-const guessCountry = (cel, country) => {
+function guessCountry(cel, country) {
   return cel.country === country;
 }
 
-const celebrity = getCelebrity();
-// console.log(celebrity.name, isSubSaharan(celebrity));
-console.log(southAmericanCountries[6].name);
+// Game Initial State
+let state = {
+  phase: 'timeline',
+  counter: 9,
+  gameOver: false,
+  won: false,
+}
+
