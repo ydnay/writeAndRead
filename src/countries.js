@@ -205,6 +205,7 @@ const centralAmercianCountries = [
     continent: 'Central America',
     latinAmerica: false,
     isle: false,
+    isthmus: true,
     coast: ['Caribbean'],
   },
   {
@@ -214,6 +215,7 @@ const centralAmercianCountries = [
     continent: 'Central America',
     latinAmerica: true,
     isle: false,
+    isthmus: true,
     coast: ['Caribbean', 'Pacific'],
   },
   {
@@ -223,6 +225,7 @@ const centralAmercianCountries = [
     continent: 'Central America',
     latinAmerica: true,
     isle: false,
+    isthmus: true,
     coast: ['Pacific'],
   },
   {
@@ -232,6 +235,7 @@ const centralAmercianCountries = [
     continent: 'Central America',
     latinAmerica: true,
     isle: false,
+    isthmus: true,
     coast: ['Caribbean', 'Pacific'],
   },
   {
@@ -241,6 +245,7 @@ const centralAmercianCountries = [
     continent: 'Central America',
     latinAmerica: true,
     isle: false,
+    isthmus: true,
     coast: ['Caribbean', 'Pacific'],
   },
   {
@@ -250,6 +255,7 @@ const centralAmercianCountries = [
     continent: 'Central America',
     latinAmerica: true,
     isle: false,
+    isthmus: true,
     coast: ['Caribbean', 'Pacific'],
   },
   {
@@ -259,6 +265,7 @@ const centralAmercianCountries = [
     continent: 'Central America',
     latinAmerica: true,
     isle: false,
+    isthmus: true,
     coast: ['Caribbean', 'Pacific'],
   },
   {
@@ -268,6 +275,7 @@ const centralAmercianCountries = [
     continent: 'Central America',
     latinAmerica: true,
     isle: true,
+    isthmus: false,
     coast: ['Caribbean'],
   },
   {
@@ -277,6 +285,7 @@ const centralAmercianCountries = [
     continent: 'Central America',
     latinAmerica: true,
     isle: true,
+    isthmus: false,
     coast: ['Caribbean'],
   },
   {
@@ -286,6 +295,7 @@ const centralAmercianCountries = [
     continent: 'Central America',
     latinAmerica: false,
     isle: true,
+    isthmus: false,
     coast: ['Caribbean'],
   },
   {
@@ -295,6 +305,7 @@ const centralAmercianCountries = [
     continent: 'Central America',
     latinAmerica: false,
     isle: true,
+    isthmus: false,
     coast: ['Caribbean'],
   },
 ]

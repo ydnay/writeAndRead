@@ -183,6 +183,14 @@ function isBlack(cel) {
   return cel.sea === 'Black';
 }
 
+function isAdriatic(cel) {
+  return cel.sea === 'Adriatic';
+}
+
+function isCeltic(cel) {
+  return cel.sea === 'Celtic';
+}
+
 // Check if peninsular
 function isPeninsular(cel) {
   return cel.peninsular;
@@ -194,13 +202,30 @@ function isPeninsular(cel) {
 
 // Finding a Cental Amercian country
 function isAnIsland(cel) {
-  return cel.island; // if false => Isthmian Central America
+  const country = cel.country;
+  console.log(country);
+  let index = 0
+  for (let i = 0; i < centralAmericanCountries.length; i++) {
+    if (centralAmericanCountries[i].name === country) {
+      return  centralAmericanCountries[index].isle;
+    }
+
+    index++;
+  }
 }
 
-// Finding a South Amercian country
-// Reuse isCoastal();
+function isAnIsthmus(cel) {
+  const country = cel.country;
+  let index = 0
+  for (let i = 0; i < centralAmericanCountries.length; i++) {
+    if (centralAmericanCountries[i].name === country) {
+      return  centralAmericanCountries[index].isthmus;
+    }
 
-// Finding coast to ocean
+    index++;
+  }
+}
+
 function hasAtlantic(cel) {
   let res = false;
   cel.oceans.forEach(oce => {
@@ -223,13 +248,9 @@ function hasPacific(cel) {
   return res;
 }
 
-// Finding an African country
-// Check if subSaharan
-function isSubSaharan(cel) {
-  return cel.subSaharan; // filter posible country list
-}
-// Rsuse isCoastal();
-// Reuse hasAtlantic();
+// Finding a South Amercian country
+// Reuse isCoastal();
+// Reuse hasAtlantic() and hasPacific();
 
 // Guess celebrity
 function guessCelebrity(cel, name) {
@@ -275,9 +296,14 @@ const continentQuest = {
 
 // Continental cases
 const europeQuest = {
-  1: 'Coastal country',
-  2: 'Coasts',
-  3: 'Peninsular',
+  'Coastal country': isCoastal(riddle),
+  'Peninsular': isPeninsular(riddle),
+  'Mediterranean': isMediterranean(riddle),
+  'North': isNorth(riddle),
+  'Baltic': isBaltic(riddle),
+  'Black': isBlack(riddle),
+  'Adriatic': isAdriatic(riddle),
+  'Celtic': isCeltic(riddle),
 }
 
 const centralAmeQuest = {
@@ -301,7 +327,9 @@ let counter = 9;
 
 
 console.log(riddle.name, timelineQuest['after Middle Ages?'], timelineQuest['after French Revolution?']);
-console.log('16-17-18', timelineQuest['16th Century'], timelineQuest['17th Century'], timelineQuest['18th Century']);
-console.log('19-20-21', timelineQuest['19th Century'], timelineQuest['20th Century'], timelineQuest['21st Century']);
-console.log('Eura, Ame, Other',  landmassQuest['Eurasia'], landmassQuest['America'], landmassQuest['Other landmass'] )
-console.log('Euro, NA, CA, SA', continentQuest['Europe'], continentQuest['North America'], continentQuest['Central America'], continentQuest['South America']);
+// console.log('16-17-18', timelineQuest['16th Century'], timelineQuest['17th Century'], timelineQuest['18th Century']);
+// console.log('19-20-21', timelineQuest['19th Century'], timelineQuest['20th Century'], timelineQuest['21st Century']);
+// console.log('Eura, Ame, Other',  landmassQuest['Eurasia'], landmassQuest['America'], landmassQuest['Other landmass'] )
+// console.log('Euro, NA, CA, SA', continentQuest['Europe'], continentQuest['North America'], continentQuest['Central America'], continentQuest['South America']);
+console.log('Isle', isAnIsland(riddle));
+console.log('Isthmus', isAnIsthmus(riddle));
