@@ -394,7 +394,6 @@ function s1() {
 // S2, Landmass
 let s2Questions = Object.keys(landmassQuest);
 function s2() {
-  // userQuestion = s2Questions[0];
     if (landmassQuest[s2Questions[0]]) {
     answer.landmass = 'Eurasia';
   } else if (landmassQuest[s2Questions[1]]) {
@@ -414,9 +413,43 @@ function s2() {
 
 // S3, Continent
 let s3Questions = Object.keys(continentQuest);
-
 function s3() {
-  
+  if (answer.landmass === 'Eurasia') {
+    if (continentQuest['Europe']) {
+      answer.continent = 'Europe';
+    } else {
+      counter--;
+      answer.continent = 'Asia';
+    }
+  } else if (answer.landmass === 'America') {
+    if (continentQuest['North America']) {
+      answer.continent = 'North America';
+    } else if (continentQuest['South America']) {
+      counter--;
+      answer.continent = 'South America';
+    } else {
+      counter -= 2;
+      answer.continent = 'Central America';
+    }
+  } else {
+    if (continentQuest['Africa']) {
+      answer.continent = 'Africa';
+    } else {
+      counter--;
+      answer.continent = 'Oceania';
+    }
+  }
+
+  // check if state exit condition was reached
+  if (answer.continent) {
+    console.log('Counter after continent: ' + counter, ', Continent: ' + answer.continent);
+    s4();
+  }
+}
+
+// S4, Continent cases
+function s4() {
+  console.log('Ready to start phase 4');
 }
 
 
