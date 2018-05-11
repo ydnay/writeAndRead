@@ -386,7 +386,7 @@ function s1() {
 
   // check if state exit condition was reached
   if (answer.centuries.length > 0) {
-    console.log('Counter after timeline: ' + counter);
+    console.log('Counter after timeline: ' + counter, ', Century: ' + answer.centuries);
     s2();
   }
 }
@@ -394,10 +394,10 @@ function s1() {
 // S2, Landmass
 let s2Questions = Object.keys(landmassQuest);
 function s2() {
-  userQuestion = s2Questions[0];
-    if (landmassQuest[userQuestion]) {
+  // userQuestion = s2Questions[0];
+    if (landmassQuest[s2Questions[0]]) {
     answer.landmass = 'Eurasia';
-  } else if (landmassQuest[userQuestion]) {
+  } else if (landmassQuest[s2Questions[1]]) {
     counter--;
     answer.landmass = 'America';
   } else {
@@ -407,14 +407,16 @@ function s2() {
 
   // check if state exit condition was reached
   if (answer.landmass) {
-    console.log('Counter after landmass: ' + counter);
+    console.log('Counter after landmass: ' + counter, ', Landmass: ' + answer.landmass);
     s3();
   }
 }
 
 // S3, Continent
+let s3Questions = Object.keys(continentQuest);
+
 function s3() {
-  console.log('Ready to start Phase 3');
+  
 }
 
 
