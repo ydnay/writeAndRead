@@ -131,11 +131,6 @@ function isEuropean(cel) {
   return cel.continent === 'Europe'; // if false => is Asian
 }
 
-// Check if Latin American
-function isLatinAmerican(cel) {
-  return cel.latinAmerica; // if false => is North America
-}
-
 function isNorthAmerican(cel) {
   return cel.continent === 'North America';
 }
@@ -197,6 +192,13 @@ function isPeninsular(cel) {
 }
 // End of Europe
 
+
+// Finding an American country
+// Check if Latin American
+function isLatinAmerican(cel) {
+  return cel.latinAmerica; // if false => is North America
+}
+
 // Finding a North American country
 // Guess! Just 3 of them...
 
@@ -209,7 +211,6 @@ function isAnIsland(cel) {
     if (centralAmericanCountries[i].name === country) {
       return  centralAmericanCountries[index].isle;
     }
-
     index++;
   }
 }
@@ -221,36 +222,47 @@ function isAnIsthmus(cel) {
     if (centralAmericanCountries[i].name === country) {
       return  centralAmericanCountries[index].isthmus;
     }
-
     index++;
   }
 }
 
-function hasAtlantic(cel) {
-  let res = false;
-  cel.oceans.forEach(oce => {
-    if(oce === 'Atlantic') {
-      res = true;
+function hasAtlantic(cel, continentArr) {
+  const country = cel.country;
+  let index = 0
+  for (let i = 0; i < continentArr.length; i++) {
+    if (continentArr[i].name === country) {
+      return continentArr[index].coasts.includes('Atlantic');
     }
-  });
-
-  return res;
+    index++;
+  }
 }
 
-function hasPacific(cel) {
-  let res = false;
-  cel.oceans.forEach(oce => {
-    if(oce === 'Pacific') {
-      res = true;
+function hasPacific(cel, continentArr) {
+  const country = cel.country;
+  let index = 0
+  for (let i = 0; i < continentArr.length; i++) {
+    if (continentArr[i].name === country) {
+      return continentArr[index].coasts.includes('Pacific');
     }
-  });
-
-  return res;
+    index++;
+  }
 }
 
 // Finding a South Amercian country
 // Reuse isCoastal();
 // Reuse hasAtlantic() and hasPacific();
+// Language functions
+function speakSpanish(cel) {
+  const country = cel.country;
+  let index = 0
+  for (let i = 0; i <  southAmericanCountries.length; i++) {
+    if (southAmericanCountries[i].name === country) {
+      return  southAmericanCountries[index].language === 'Spanish';
+    }
+
+    index++;
+  }
+}
 
 // Guess celebrity
 function guessCelebrity(cel, name) {
@@ -296,7 +308,7 @@ const continentQuest = {
 
 // Continental cases
 const europeQuest = {
-  'Coastal country': isCoastal(riddle),
+  'Coastal': isCoastal(riddle),
   'Peninsular': isPeninsular(riddle),
   'Mediterranean': isMediterranean(riddle),
   'North': isNorth(riddle),
@@ -304,19 +316,22 @@ const europeQuest = {
   'Black': isBlack(riddle),
   'Adriatic': isAdriatic(riddle),
   'Celtic': isCeltic(riddle),
+  'Atlantic': hasAtlantic(riddle, europeCountries),
 }
 
 const centralAmeQuest = {
-  1: 'Isthmus',
-  2: 'Insular',
-  3: 'Coasts',
-  4: 'Latinamerica',
+  'Isthmus': isAnIsthmus(riddle),
+  'Atlantic': hasAtlantic(riddle, centralAmericanCountries),
+  'Pacific': hasPacific(riddle, centralAmericanCountries),
+  'Insular': isAnIsland(riddle),
+  'Latinamerica': isLatinAmerican(riddle),
 }
 
 const southAmeQuest = {
-  1: 'Coastal',
-  2: 'Coasts',
-  3: 'Language',
+  'Coastal': isCoastal(riddle),
+  'Atlantic': hasAtlantic(riddle, southAmericanCountries),
+  'Pacific': hasPacific(riddle, southAmericanCountries),
+  'Spanish': speakSpanish(riddle),
 }
 
 // Game Initial State
@@ -326,10 +341,12 @@ let phase = phases[phasesIndex];
 let counter = 9;
 
 
+
 console.log(riddle.name, timelineQuest['after Middle Ages?'], timelineQuest['after French Revolution?']);
 // console.log('16-17-18', timelineQuest['16th Century'], timelineQuest['17th Century'], timelineQuest['18th Century']);
 // console.log('19-20-21', timelineQuest['19th Century'], timelineQuest['20th Century'], timelineQuest['21st Century']);
 // console.log('Eura, Ame, Other',  landmassQuest['Eurasia'], landmassQuest['America'], landmassQuest['Other landmass'] )
 // console.log('Euro, NA, CA, SA', continentQuest['Europe'], continentQuest['North America'], continentQuest['Central America'], continentQuest['South America']);
-console.log('Isle', isAnIsland(riddle));
-console.log('Isthmus', isAnIsthmus(riddle));
+// console.log('Isle', centralAmeQuest['Insular']);
+// console.log('Isthmus', isAnIsthmus(riddle));
+// console.log(southAmeQuest.Coastal, southAmeQuest.Spanish, southAmeQuest.Atlantic, southAmeQuest.Pacific);

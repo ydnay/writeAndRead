@@ -22,7 +22,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: true,
-    coast: ['Mediterranean', 'Atlantic'],
+    coasts: ['Mediterranean', 'Atlantic'],
   },
   {
     name: 'Portugal',
@@ -31,7 +31,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: true,
-    coast: ['Atlantic'],
+    coasts: ['Atlantic'],
   },
   {
     name: 'France',
@@ -40,7 +40,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: false,
-    coast: ['Mediterranean', 'Atlantic'],
+    coasts: ['Mediterranean', 'Atlantic'],
   },
   {
     name: 'Italy',
@@ -49,7 +49,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: true,
-    coast: ['Mediterranean', 'Adriatic'],
+    coasts: ['Mediterranean', 'Adriatic'],
   },
   {
     name: 'Germany',
@@ -58,7 +58,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: false,
-    coast: ['North', 'Baltic'],
+    coasts: ['North', 'Baltic'],
   },
   {
     name: 'Netherlands',
@@ -67,7 +67,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: false,
-    coast: ['North'],
+    coasts: ['North'],
   },
   {
     name: 'Belgium',
@@ -76,7 +76,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: false,
-    coast: ['North'],
+    coasts: ['North'],
   },
   {
     name: 'Switzerland',
@@ -85,7 +85,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: false,
     peninsular: false,
-    coast: [],
+    coasts: [],
   },
   {
     name: 'Austria',
@@ -94,7 +94,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: false,
     peninsular: false,
-    coast: [],
+    coasts: [],
   },
   {
     name: 'Poland',
@@ -103,7 +103,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: false,
-    coast: ['Baltic'],
+    coasts: ['Baltic'],
   },
   {
     name: 'Bulgaria',
@@ -112,7 +112,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: false,
-    coast: ['Black'],
+    coasts: ['Black'],
   },
   {
     name: 'Romania',
@@ -121,7 +121,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: false,
-    coast: ['Black'],
+    coasts: ['Black'],
   },
   {
     name: 'Hungary',
@@ -130,7 +130,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: false,
     peninsular: false,
-    coast: [],
+    coasts: [],
   },
   {
     name: 'Serbia',
@@ -139,7 +139,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: false,
     peninsular: false,
-    coast: [],
+    coasts: [],
   },
   {
     name: 'Greece',
@@ -148,7 +148,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: true,
-    coast: ['Mediterranean', 'Aegean'],
+    coasts: ['Mediterranean', 'Aegean'],
   },
   {
     name: 'Turkey',
@@ -157,7 +157,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: true,
-    coast: ['Mediterranean', 'Aegean', 'Black'],
+    coasts: ['Mediterranean', 'Aegean', 'Black'],
   },
   {
     name: 'Ukraine',
@@ -166,7 +166,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: true,
-    coast: ['Black'],
+    coasts: ['Black'],
   },
   {
     name: 'Russia',
@@ -175,7 +175,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: true,
-    coast: ['Black', 'Barents', 'Baltic', 'Caspian'],
+    coasts: ['Black', 'Barents', 'Baltic', 'Caspian'],
   },
   {
     name: 'Norway',
@@ -184,7 +184,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: true,
-    coast: ['North', 'Norwegian'],
+    coasts: ['North', 'Norwegian'],
   },
   {
     name: 'England',
@@ -193,7 +193,7 @@ const europeCountries = [
     continent: 'Europe',
     coastal: true,
     peninsular: false,
-    coast: ['North', 'Celtic'],
+    coasts: ['North', 'Celtic'],
   },
 ]
 
@@ -206,7 +206,7 @@ const centralAmercianCountries = [
     latinAmerica: false,
     isle: false,
     isthmus: true,
-    coast: ['Caribbean'],
+    coasts: ['Caribbean'],
   },
   {
     name: 'Costa Rica',
@@ -216,7 +216,7 @@ const centralAmercianCountries = [
     latinAmerica: true,
     isle: false,
     isthmus: true,
-    coast: ['Caribbean', 'Pacific'],
+    coasts: ['Caribbean', 'Pacific'],
   },
   {
     name: 'El Salvador',
@@ -226,7 +226,7 @@ const centralAmercianCountries = [
     latinAmerica: true,
     isle: false,
     isthmus: true,
-    coast: ['Pacific'],
+    coasts: ['Pacific'],
   },
   {
     name: 'Guatemala',
@@ -236,7 +236,7 @@ const centralAmercianCountries = [
     latinAmerica: true,
     isle: false,
     isthmus: true,
-    coast: ['Caribbean', 'Pacific'],
+    coasts: ['Caribbean', 'Pacific'],
   },
   {
     name: 'Honduras',
@@ -246,7 +246,7 @@ const centralAmercianCountries = [
     latinAmerica: true,
     isle: false,
     isthmus: true,
-    coast: ['Caribbean', 'Pacific'],
+    coasts: ['Caribbean', 'Pacific'],
   },
   {
     name: 'Nicaragua',
@@ -256,7 +256,7 @@ const centralAmercianCountries = [
     latinAmerica: true,
     isle: false,
     isthmus: true,
-    coast: ['Caribbean', 'Pacific'],
+    coasts: ['Caribbean', 'Pacific'],
   },
   {
     name: 'Panama',
@@ -266,7 +266,7 @@ const centralAmercianCountries = [
     latinAmerica: true,
     isle: false,
     isthmus: true,
-    coast: ['Caribbean', 'Pacific'],
+    coasts: ['Caribbean', 'Pacific'],
   },
   {
     name: 'Cuba',
@@ -276,7 +276,7 @@ const centralAmercianCountries = [
     latinAmerica: true,
     isle: true,
     isthmus: false,
-    coast: ['Caribbean'],
+    coasts: ['Caribbean'],
   },
   {
     name: 'Dominican Republic',
@@ -286,7 +286,7 @@ const centralAmercianCountries = [
     latinAmerica: true,
     isle: true,
     isthmus: false,
-    coast: ['Caribbean'],
+    coasts: ['Caribbean'],
   },
   {
     name: 'Haiti',
@@ -296,7 +296,7 @@ const centralAmercianCountries = [
     latinAmerica: false,
     isle: true,
     isthmus: false,
-    coast: ['Caribbean'],
+    coasts: ['Caribbean'],
   },
   {
     name: 'Jamaica',
@@ -306,7 +306,7 @@ const centralAmercianCountries = [
     latinAmerica: false,
     isle: true,
     isthmus: false,
-    coast: ['Caribbean'],
+    coasts: ['Caribbean'],
   },
 ]
 
@@ -318,7 +318,7 @@ const southAmericanCountries = [
     continent: 'South America',
     latinAmerica: true,
     coastal: true,
-    coast: ['Pacific', 'Atlantic'],
+    coasts: ['Pacific', 'Atlantic'],
   },
   {
     name: 'Venezuela',
@@ -327,7 +327,7 @@ const southAmericanCountries = [
     continent: 'South America',
     latinAmerica: true,
     coastal: true,
-    coast: ['Atlantic'],
+    coasts: ['Atlantic'],
   },
   {
     name: 'Brazil',
@@ -336,7 +336,7 @@ const southAmericanCountries = [
     continent: 'South America',
     latinAmerica: true,
     coastal: true,
-    coast: ['Atlantic'],
+    coasts: ['Atlantic'],
   },
   {
     name: 'Ecuador',
@@ -345,7 +345,7 @@ const southAmericanCountries = [
     continent: 'South America',
     latinAmerica: true,
     coastal: true,
-    coast: ['Pacific'],
+    coasts: ['Pacific'],
   },
   {
     name: 'Peru',
@@ -354,7 +354,7 @@ const southAmericanCountries = [
     continent: 'South America',
     latinAmerica: true,
     coastal: true,
-    coast: ['Pacific'],
+    coasts: ['Pacific'],
   },
   {
     name: 'Bolivia',
@@ -363,7 +363,7 @@ const southAmericanCountries = [
     continent: 'South America',
     latinAmerica: true,
     coastal: false,
-    coast: [],
+    coasts: [],
   },
   {
     name: 'Paraguay',
@@ -372,7 +372,7 @@ const southAmericanCountries = [
     continent: 'South America',
     latinAmerica: true,
     coastal: false,
-    coast: [],
+    coasts: [],
   },
   {
     name: 'Chile',
@@ -381,7 +381,7 @@ const southAmericanCountries = [
     continent: 'South America',
     latinAmerica: true,
     coastal: true,
-    coast: ['Pacific'],
+    coasts: ['Pacific'],
   },
   {
     name: 'Argentina',
@@ -390,7 +390,7 @@ const southAmericanCountries = [
     continent: 'South America',
     latinAmerica: true,
     coastal: true,
-    coast: ['Atlantic'],
+    coasts: ['Atlantic'],
   },
   {
     name: 'Uruguay',
@@ -399,7 +399,7 @@ const southAmericanCountries = [
     continent: 'South America',
     latinAmerica: true,
     coastal: true,
-    coast: ['Atlantic'],
+    coasts: ['Atlantic'],
   },
   {
     name: 'Guyana',
@@ -408,7 +408,7 @@ const southAmericanCountries = [
     continent: 'South America',
     latinAmerica: false,
     coastal: true,
-    coast: ['Atlantic'],
+    coasts: ['Atlantic'],
   },
   {
     name: 'Suriname',
@@ -417,6 +417,6 @@ const southAmericanCountries = [
     continent: 'South America',
     latinAmerica: false,
     coastal: true,
-    coast: ['Atlantic'],
+    coasts: ['Atlantic'],
   },
 ]
