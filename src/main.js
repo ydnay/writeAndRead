@@ -152,6 +152,10 @@ function isAfrican(cel) {
   return cel.continent === 'Africa';
 }
 
+function isAsian(cel) {
+  return cel.continent === 'Asia';
+}
+
 function isOceanian(cel) {
   return cel.continent === 'Oceania';
 }
@@ -253,20 +257,20 @@ const timelineQuest = {
 
 // Landmass questions
 const landmassQuest = {
-  1: 'Eurasia',
-  2: 'America',
-  3: 'Other landmass',
+  'Eurasia': isFromEurasia(riddle),
+  'America': isFromAmerica(riddle),
+  'Other landmass': isFromOtherLand(riddle),
 }
 
 // Continent questions
 const continentQuest = {
-  1: 'Europe',
-  2: 'Asia',
-  3: 'North America',
-  4: 'Central America',
-  5: 'South America',
-  6: 'Africa',
-  7: 'Oceania',
+  'Europe': isEuropean(riddle),
+  'Asia': isAsian(riddle),
+  'North America': isNorthAmerican(riddle),
+  'Central America': isCentralAmerican(riddle),
+  'South America': isSouthAmerican(riddle),
+  'Africa': isAfrican(riddle),
+  'Oceania': isOceanian(riddle),
 }
 
 // Continental cases
@@ -296,12 +300,8 @@ let phase = phases[phasesIndex];
 let counter = 9;
 
 
-console.log(riddle.name, timelineQuest['after Middle Ages?']);
-console.log(riddle.name, timelineQuest['after French Revolution?']);
-console.log(riddle.name, timelineQuest['16th Century']);
-console.log(riddle.name, timelineQuest['17th Century']);
-console.log(riddle.name, timelineQuest['18th Century']);
-console.log(riddle.name, timelineQuest['19th Century']);
-console.log(riddle.name, timelineQuest['20th Century']);
-console.log(riddle.name, timelineQuest['21st Century']);
-
+console.log(riddle.name, timelineQuest['after Middle Ages?'], timelineQuest['after French Revolution?']);
+console.log('16-17-18', timelineQuest['16th Century'], timelineQuest['17th Century'], timelineQuest['18th Century']);
+console.log('19-20-21', timelineQuest['19th Century'], timelineQuest['20th Century'], timelineQuest['21st Century']);
+console.log('Eura, Ame, Other',  landmassQuest['Eurasia'], landmassQuest['America'], landmassQuest['Other landmass'] )
+console.log('Euro, NA, CA, SA', continentQuest['Europe'], continentQuest['North America'], continentQuest['Central America'], continentQuest['South America']);
