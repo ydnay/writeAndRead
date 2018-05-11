@@ -35,6 +35,42 @@ function isAfterFrenchRev(cel) {
   return cel.born > 1789;
 }
 
+// Check if celebrity existed on 16th century
+function is16Cent(cel) {
+  let res = false;
+  cel.centuries.forEach(elem => {
+    if (elem === 16) {
+      res = true;
+    }
+  });
+
+  return res;
+}
+
+// Check if celebrity existed on 17th century
+function is17Cent(cel) {
+  let res = false;
+  cel.centuries.forEach(elem => {
+    if (elem === 17) {
+      res = true;
+    }
+  });
+
+  return res;
+}
+
+// Check if celebrity existed on 18th century
+function is18Cent(cel) {
+  let res = false;
+  cel.centuries.forEach(elem => {
+    if (elem === 18) {
+      res = true;
+    }
+  });
+
+  return res;
+}
+
 // Check if celebrity existed on 19th century
 function is19Cent(cel) {
   let res = false;
@@ -201,11 +237,71 @@ function guessCountry(cel, country) {
   return cel.country === country;
 }
 
-// Game Initial State
-let state = {
-  phase: 'timeline',
-  counter: 9,
-  gameOver: false,
-  won: false,
+const riddle = getCelebrity();
+
+// Timeline questions
+const timelineQuest = {
+  'after Middle Ages?': isAfterMiddleAges(riddle),
+  'after French Revolution?': isAfterFrenchRev(riddle),
+  '16th Century': is16Cent(riddle),
+  '17th Century': is17Cent(riddle),
+  '18th Century': is18Cent(riddle),
+  '19th Century': is19Cent(riddle),
+  '20th Century': is20Cent(riddle),
+  '21st Century': is21Cent(riddle),
 }
+
+// Landmass questions
+const landmassQuest = {
+  1: 'Eurasia',
+  2: 'America',
+  3: 'Other landmass',
+}
+
+// Continent questions
+const continentQuest = {
+  1: 'Europe',
+  2: 'Asia',
+  3: 'North America',
+  4: 'Central America',
+  5: 'South America',
+  6: 'Africa',
+  7: 'Oceania',
+}
+
+// Continental cases
+const europeQuest = {
+  1: 'Coastal country',
+  2: 'Coasts',
+  3: 'Peninsular',
+}
+
+const centralAmeQuest = {
+  1: 'Isthmus',
+  2: 'Insular',
+  3: 'Coasts',
+  4: 'Latinamerica',
+}
+
+const southAmeQuest = {
+  1: 'Coastal',
+  2: 'Coasts',
+  3: 'Language',
+}
+
+// Game Initial State
+const phases = ['timeline', 'landmass', 'continent', 'continent cases', 'country', 'sex', 'field'];
+let phasesIndex = 0;
+let phase = phases[phasesIndex];
+let counter = 9;
+
+
+console.log(riddle.name, timelineQuest['after Middle Ages?']);
+console.log(riddle.name, timelineQuest['after French Revolution?']);
+console.log(riddle.name, timelineQuest['16th Century']);
+console.log(riddle.name, timelineQuest['17th Century']);
+console.log(riddle.name, timelineQuest['18th Century']);
+console.log(riddle.name, timelineQuest['19th Century']);
+console.log(riddle.name, timelineQuest['20th Century']);
+console.log(riddle.name, timelineQuest['21st Century']);
 
