@@ -384,16 +384,41 @@ function s1() {
     console.log('old fox here');
   }
 
+  // check if state exit condition was reached
   if (answer.centuries.length > 0) {
-    return s2(), 'Counter: ' + counter;
+    console.log('Counter after timeline: ' + counter);
+    s2();
   }
 }
 
-// S2 landmass
+// S2, Landmass
+let s2Questions = Object.keys(landmassQuest);
 function s2() {
-  console.log('ready to start Phase 2');
+  userQuestion = s2Questions[0];
+    if (landmassQuest[userQuestion]) {
+    answer.landmass = 'Eurasia';
+  } else if (landmassQuest[userQuestion]) {
+    counter--;
+    answer.landmass = 'America';
+  } else {
+    counter--;
+    answer.landmass = 'Other';
+  }
+
+  // check if state exit condition was reached
+  if (answer.landmass) {
+    console.log('Counter after landmass: ' + counter);
+    s3();
+  }
 }
 
-console.log(s1());
-console.log('Secret celebrity: ' + riddle.name);
-console.log('Century: ' + answer.centuries[0]);
+// S3, Continent
+function s3() {
+  console.log('Ready to start Phase 3');
+}
+
+
+s1();
+console.log(riddle.name);
+
+
