@@ -8,13 +8,13 @@ const centralAmericanCountries = importedCountries.exportCentAmerCont();
 const southAmericanCountries = importedCountries.exportSouthAmerCont();
 
 // Select a random number
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
+function getRandomInt(min, max) {
+  return Math.floor((Math.random() * max) + min);
 }
 
 // Select a random celebrity
 function getCelebrity() {
-  return celebrities[getRandomInt(celebrities.length)];
+  return celebrities[getRandomInt(0, celebrities.length)];
 }
 
 // Timeline functions 
@@ -205,7 +205,6 @@ function isLatinAmerican(cel) {
 // Finding a Cental Amercian country
 function isAnIsland(cel) {
   const country = cel.country;
-  console.log(country);
   let index = 0
   for (let i = 0; i < centralAmericanCountries.length; i++) {
     if (centralAmericanCountries[i].name === country) {
@@ -274,9 +273,12 @@ function guessCountry(cel, country) {
   return cel.country === country;
 }
 
+// End of helper functions ***************************
+
+// Game Phases
 const riddle = getCelebrity();
 
-// Timeline questions
+// Timeline Phase 1
 const timelineQuest = {
   'after Middle Ages?': isAfterMiddleAges(riddle),
   'after French Revolution?': isAfterFrenchRev(riddle),
@@ -288,14 +290,14 @@ const timelineQuest = {
   '21st Century': is21Cent(riddle),
 }
 
-// Landmass questions
+// Landmass Phase 2
 const landmassQuest = {
   'Eurasia': isFromEurasia(riddle),
   'America': isFromAmerica(riddle),
   'Other landmass': isFromOtherLand(riddle),
 }
 
-// Continent questions
+// Continent Phase 3
 const continentQuest = {
   'Europe': isEuropean(riddle),
   'Asia': isAsian(riddle),
@@ -306,7 +308,7 @@ const continentQuest = {
   'Oceania': isOceanian(riddle),
 }
 
-// Continental cases
+// Continental cases Phase 4
 const europeQuest = {
   'Coastal': isCoastal(riddle),
   'Peninsular': isPeninsular(riddle),
@@ -334,19 +336,64 @@ const southAmeQuest = {
   'Spanish': speakSpanish(riddle),
 }
 
-// Game Initial State
-const phases = ['timeline', 'landmass', 'continent', 'continent cases', 'country', 'sex', 'field'];
-let phasesIndex = 0;
-let phase = phases[phasesIndex];
-let counter = 9;
+// Game States
+// S1 Initial State, Timeline
+let counter = 9; // initial counter
+let phase = 'timeline'; // initial phase
+let answer = { // initial guessed celecrity
+  centuries: [],
+};
+let s1Questions = Object.keys(timelineQuest);
+let userQuestion = s1Questions[0];
 
+function s1() {
+  if (timelineQuest[userQuestion]) {
+    userQuestion = s1Questions[1];
+    if (timelineQuest[userQuestion]) {
+      userQuestion = s1Questions[5]; // cent 19
+      if (timelineQuest[userQuestion]) {
+        answer.centuries.push(19);
+      } else {
+        counter--
+        userQuestion = s1Questions[6]; // cent 20
+        if (timelineQuest[userQuestion]) {
+          answer.centuries.push(20);
+        } else {
+          counter--;
+          answer.centuries.push(21);
+        }
+      }
+    } else {
+      counter--;
+      userQuestion = s1Questions[2] // cent 16
+      if (timelineQuest[userQuestion]) {
+        answer.centuries.push(16);
+      } else {
+        counter--
+        userQuestion = s1Questions[3]; // cent 17
+        if (timelineQuest[userQuestion]) {
+          answer.centuries.push(17);
+        } else {
+          counter--
+          answer.centuries.push(18);
+        }
+      }
+    }
+  } else {
+    counter --;
+    console.log('old fox here');
+  }
 
+  if (answer.centuries.length > 0) {
+    return s2(), 'Counter: ' + counter;
+  }
+}
 
-console.log(riddle.name, timelineQuest['after Middle Ages?'], timelineQuest['after French Revolution?']);
-// console.log('16-17-18', timelineQuest['16th Century'], timelineQuest['17th Century'], timelineQuest['18th Century']);
-// console.log('19-20-21', timelineQuest['19th Century'], timelineQuest['20th Century'], timelineQuest['21st Century']);
-// console.log('Eura, Ame, Other',  landmassQuest['Eurasia'], landmassQuest['America'], landmassQuest['Other landmass'] )
-// console.log('Euro, NA, CA, SA', continentQuest['Europe'], continentQuest['North America'], continentQuest['Central America'], continentQuest['South America']);
-// console.log('Isle', centralAmeQuest['Insular']);
-// console.log('Isthmus', isAnIsthmus(riddle));
-// console.log(southAmeQuest.Coastal, southAmeQuest.Spanish, southAmeQuest.Atlantic, southAmeQuest.Pacific);
+// S2 landmass
+function s2() {
+  console.log('ready to start Phase 2');
+}
+
+console.log(s1());
+console.log('Secret celebrity: ' + riddle.name);
+console.log('Century: ' + answer.centuries[0]);
