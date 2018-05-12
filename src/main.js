@@ -117,7 +117,7 @@ function isFromEurasia(cel) {
 
 // Check if celebrity is from America
 function isFromAmerica(cel) {
-  return cel.land === 'America'
+  return cel.land === 'America';
 }
 
 // Check if celebrity is different from Eurasia or America
@@ -163,27 +163,27 @@ function isCoastal(cel) {
 
 // Find sea 
 function isMediterranean(cel) {
-  return cel.sea === 'Mediterranean';
+  return cel.coasts.includes('Mediterranean');
 }
 
 function isNorth(cel) {
-  return cel.sea === 'North';
+  return cel.coasts.includes('North');
 }
 
 function isBaltic(cel) {
-  return cel.sea === 'Baltic';
+  return cel.coasts.includes('Baltic');
 }
 
 function isBlack(cel) {
-  return cel.sea === 'Black';
+  return cel.coasts.includes('Black');
 }
 
 function isAdriatic(cel) {
-  return cel.sea === 'Adriatic';
+  return cel.coasts.includes('Adriatic');
 }
 
 function isCeltic(cel) {
-  return cel.sea === 'Celtic';
+  return cel.coasts.includes('Celtic');
 }
 
 // Check if peninsular
@@ -205,7 +205,7 @@ function isLatinAmerican(cel) {
 // Finding a Cental Amercian country
 function isAnIsland(cel) {
   const country = cel.country;
-  let index = 0
+  let index = 0;
   for (let i = 0; i < centralAmericanCountries.length; i++) {
     if (centralAmericanCountries[i].name === country) {
       return  centralAmericanCountries[index].isle;
@@ -412,7 +412,6 @@ function s2() {
 }
 
 // S3, Continent
-let s3Questions = Object.keys(continentQuest);
 function s3() {
   if (answer.landmass === 'Eurasia') {
     if (continentQuest['Europe']) {
@@ -447,13 +446,123 @@ function s3() {
   }
 }
 
-// S4, Continent cases
+// S4, Continent Cases
 function s4() {
-  console.log('Ready to start phase 4');
+  // Europe Cases
+  if (answer.continent === 'Europe') {
+    if (europeQuest['Coastal']) {
+      answer.coastal = true;
+      if (europeQuest['Mediterranean']) {
+        answer.coasts = [];
+        answer.coasts.push('Mediterranean');
+        if (europeQuest['Peninsular']) {
+          answer.peninsular = true;
+          if (riddle.country === 'Spain') {
+            answer.country = 'Spain';
+          } else if (riddle.country === 'Italy') {
+            counter--;
+            answer.country = 'Italy';
+          } else {
+            counter -= 2;
+            answer.country = 'Greece';
+          }
+        } else {
+          counter--;
+          answer.country = 'France';
+        }
+      } else {
+        counter--;
+        // Portugal, Germany, Netherlands, Belgium, Poland, Bulgary, Romania, Ukraine, Russia, Norway
+        if (riddle.country === 'England') {
+          answer.country = 'England';
+        }
+      }
+    } else {
+      counter--;
+      // Switzerland, Austria, Hungary or Serbia
+    }
+  }
+
+  // North America Cases
+  if (answer.continent === 'North America') {
+    if (riddle.country === 'United States') {
+      answer.country = 'United States';
+    } else if (riddle.country === 'Mexico') {
+      counter--;
+      answer.country = 'Mexico';
+    } else {
+      counter -= 2;
+      answer.country = 'Canada';
+    }
+  }
+
+  // Central America Cases
+  if (answer.continent === 'Central America') {
+    if (centralAmeQuest['Isthmus']) {
+      // Bel, Gua, Hon, Sal, Nic, Costa R, Panama
+    } else {
+      counter--;
+      if (centralAmeQuest['Latinamerica']) {
+        if (riddle.country === 'Cuba') {
+          answer.country = 'Cuba';
+        } else if (riddle.country === 'Dominican Republic') {
+          counter--;
+          answer.country = 'Dominican Republic';
+        } else {
+          counter -= 2;
+          answer.country = 'Haiti';
+        }
+      }
+    }
+  }
+
+  //  South America Cases
+  if (answer.continent === 'South America') {
+    if (southAmeQuest['Coastal']) {
+      answer.coastal = true;
+      if (southAmeQuest['Spanish']) {
+        answer.language = 'Spanish';
+        if (southAmeQuest['Atlantic']) {
+          answer.coasts = [];
+          answer.coasts.push('Atlantic');
+          if (riddle.country === 'Colombia') {
+            answer.country = 'Colombia';
+          } else if (riddle.country === 'Argentina') {
+            counter--;
+            answer.country = 'Argentina';
+          } else if (riddle.country === 'Uruguay') {
+            counter -= 2;
+            answer.country = 'Uruguay';
+          } else {
+            counter -= 3;
+            answer.country = 'Venezuela';
+          }
+        } else {
+          counter--;
+          // Chile, Peru, Ecuador
+        }
+      } else {
+        counter--;
+        // Brasil, Guyana, Suriname
+      }
+    } else {
+      counter--;
+      // Bolivia or Paraguay
+    }
+  }
+
+  // check if state exit condition was reached
+  if (answer.country) {
+    console.log('Counter after continent cases: ' + counter, ', Country: ' + answer.country);
+    s5();
+  }
 }
 
+function s5() {
+  console.log('Ready to start Phase 5');
+}
 
 s1();
-console.log(riddle.name);
+console.log(riddle.name, answer.country);
 
 
