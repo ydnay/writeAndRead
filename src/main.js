@@ -1,11 +1,660 @@
-// import celebrities array
-const importedCeleb = require("./celebrities.js"); // ES2016 import does't work on backend without express, babel, etc
-const celebrities = importedCeleb.exportCeleb();
-// import countries
-const importedCountries = require("./countries.js");
-const europeCountries = importedCountries.exportEuroCont();
-const centralAmericanCountries = importedCountries.exportCentAmerCont();
-const southAmericanCountries = importedCountries.exportSouthAmerCont();
+// // import celebrities array
+// const importedCeleb = require("./celebrities.js"); // ES2016 import does't work on backend without express, babel, etc
+// const celebrities = importedCeleb.exportCeleb();
+// // import countries
+// const importedCountries = require("./countries.js");
+// const europeCountries = importedCountries.exportEuroCont();
+// const centralAmericanCountries = importedCountries.exportCentAmerCont();
+// const southAmericanCountries = importedCountries.exportSouthAmerCont();
+
+// Celebrities list
+const celebrities = [
+  {
+    name: 'Isaac Newton',
+    fictional: false,
+    born: 1643,
+    died: 1727,
+    centuries: [17, 18],
+    sex: 'male',
+    land: 'Eurasia',
+    continent: 'Europe',
+    country:'England',
+    language: 'English',
+    coastal: true,
+    peninsular: false,
+    coasts: ['North'],
+    mainField: 'science',
+    fields: ['mathematician', 'astronomer', 'theologian', 'author', 'physicist'],
+    akas: ['Isaac Newton', 'Newton'],
+  },
+  {
+    name: 'Abraham Lincoln',
+    fictional: false,
+    born: 1809,
+    died: 1865,
+    centuries: [19],
+    sex: 'male',
+    land: 'America',
+    latinAmerica: false,
+    continent: 'North America',
+    country:'United States',
+    language: 'English',
+    coastal: true,
+    coasts: ['Pacific', 'Atlantic'],
+    mainField: 'politics',
+    fields: ['lawyer', 'politician'],
+    akas: ['Abraham Lincoln', 'Lincoln'],
+  },
+  {
+    name: 'Mario Benedetti',
+    fictional: false,
+    born: 1920,
+    died: 2009,
+    centuries: [20, 21],
+    sex: 'male',
+    land: 'America',
+    latinAmerica: true,
+    continent: 'South America',
+    country:'Uruguay',
+    language: 'Spanish',
+    coastal: true,
+    coasts: ['Atlantic'],
+    mainField: 'arts',
+    plasticArts: false,
+    performing: false,
+    music: false,
+    literature: true,
+    dance: false,
+    fields: ['journalist', 'novelist', 'poet', 'writer'],
+    akas: ['Mario Benedetti', 'Benedetti'],
+  },
+  {
+    name: 'Mercedes Sosa',
+    fictional: false,
+    born: 1935,
+    died: 2009,
+    centuries: [20, 21],
+    sex: 'female',
+    land: 'America',
+    latinAmerica: true,
+    continent: 'South America',
+    country:'Argentina',
+    language: 'Spanish',
+    coastal: true,
+    coasts: ['Atlantic'],
+    mainField: 'arts',
+    plasticArts: false,
+    performing: false,
+    music: true,
+    literature: false,
+    dance: false,
+    fields: ['singer', 'musician'],
+    akas: ['Mercedes Sosa', 'La Negra'],
+  },
+  {
+    name: 'Gabriel Garcia Marquez',
+    fictional: false,
+    born: 1927,
+    died: 2014,
+    centuries: [20, 21],
+    sex: 'male',
+    land: 'America',
+    latinAmerica: true,
+    continent: 'South America',
+    country:'Colombia',
+    language: 'Spanish',
+    coastal: true,
+    coasts: ['Pacific', 'Atlantic'],
+    mainField: 'arts',
+    plasticArts: false,
+    performing: false,
+    music: false,
+    literature: true,
+    dance: false,
+    fields: ['writer', 'novelist','sreenwriter', 'journalist'],
+    akas: ['Gabriel Garcia Marquez', 'Garcia Marquez', 'Gabo'],
+  },
+  {
+    name: 'Mario Moreno',
+    fictional: false,
+    born: 1911,
+    died: 1993,
+    centuries: [20],
+    sex: 'male',
+    land: 'America',
+    latinAmerica: true,
+    continent: 'North America',
+    country:'Mexico',
+    language: 'Spanish',
+    coastal: true,
+    coasts: ['Pacific', 'Atlantic'],
+    mainField: 'arts',
+    plasticArts: false,
+    performing: true,
+    music: false,
+    literature: false,
+    dance: false,
+    fields: ['actor', 'comedian','sreenwriter', 'producer'],
+    akas: ['Mario Moreno', 'Cantinflas'],
+  },
+  {
+    name: 'Jose Marti',
+    fictional: false,
+    born: 1853,
+    died: 1895,
+    centuries: [19],
+    sex: 'male',
+    land: 'America',
+    latinAmerica: true,
+    continent: 'Central America and the Caribbean',
+    island: true,
+    country:'Cuba',
+    language: 'Spanish',
+    coastal: true,
+    coasts: ['Atlantic'],
+    island: true, // not really is an archipelago
+    mainField: ['arts', 'politics'], // usually a string, here an array. Use Array.isArray();
+    plasticArts: false,
+    performing: false,
+    music: false,
+    literature: true,
+    dance: false,
+    fields: ['writer', 'poet','assyist', 'journalist', 'translator', 'philosopher', 'theorist'],
+    akas: ['Jose Marti', 'Marti', 'El apostol', 'The apostle'],
+  },
+  {
+    name: 'Miguel de Cervantes y Saavedra',
+    fictional: false,
+    born: 1547,
+    died: 1616,
+    centuries: [16, 17],
+    sex: 'male',
+    land: 'Eurasia',
+    continent: 'Europe',
+    country:'Spain',
+    language: 'Spanish',
+    coastal: true,
+    peninsular: true,
+    coasts: ['Mediterranean'],
+    mainField: 'arts',
+    plasticArts: false,
+    performing: false,
+    music: false,
+    literature: true,
+    dance: false,
+    fields: ['writer', 'novelist'],
+    akas: ['Miguel de Cervantes y Saavedra', 'Miguel de Cervantes', 'Miguel Cervantes', 'Cervantes', 'El manco de Lepanto'],
+  },
+  {
+    name: 'Luciano Pavarotti',
+    fictional: false,
+    born: 1935,
+    died: 2007,
+    centuries: [20, 21],
+    sex: 'male',
+    land: 'Eurasia',
+    continent: 'Europe',
+    country:'Italy',
+    language: 'Italian',
+    coastal: true,
+    peninsular: true,
+    coasts: ['Mediterranean', 'Adriatic'],
+    mainField: 'arts',
+    plasticArts: false,
+    performing: true,
+    music: true,
+    literature: false,
+    dance: false,
+    fields: ['singer', 'tenor'],
+    akas: ['Luciano Pavarotti', 'Pavarotti'],
+  },
+  {
+    name: 'Marie Curie',
+    fictional: false,
+    born: 1867,
+    died: 1934,
+    centuries: [19, 20],
+    sex: 'female',
+    land: 'Eurasia',
+    continent: 'Europe',
+    country:'France',
+    language: 'French',
+    coastal: true,
+    peninsular: false,
+    coasts: ['Mediterranean'],
+    mainField: 'science',
+    fields: ['physicist', 'chemist'],
+    akas: ['Marie Sklodowska Curie', 'Maria Salomea Sklodowska', 'Marie Curie', 'Maria Curie'],
+  },
+  // {
+  //   name: 'Nelson Mandela',
+  //   fictional: false,
+  //   born: 1918,
+  //   died: 2013,
+  //   centuries: [20, 21],
+  //   sex: 'male',
+  //   land: 'Africa',
+  //   continent: 'Africa',
+  //   subSaharan: true,
+  //   country:'South Africa',
+  //   language: 'English',
+  //   coasts: true,
+  //   peninsular: true,
+  //   oceans: ['Atlatic', 'Indian'],
+  //   mainField: 'politics',
+  //   fields: ['political leader', 'president', 'philanthropist'],
+  //   akas: ['Nelson Mandela', 'Mandela'],
+  // },
+]
+
+// Countries Lists
+// Europe
+const europeCountries = [
+  {
+    name: 'Spain',
+    laguage: 'Spanish',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: true,
+    coasts: ['Mediterranean', 'Atlantic'],
+  },
+  {
+    name: 'Portugal',
+    laguage: 'Portuguese',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: true,
+    coasts: ['Atlantic'],
+  },
+  {
+    name: 'France',
+    laguage: 'French',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: false,
+    coasts: ['Mediterranean', 'Atlantic'],
+  },
+  {
+    name: 'Italy',
+    laguage: 'Italian',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: true,
+    coasts: ['Mediterranean', 'Adriatic'],
+  },
+  {
+    name: 'Germany',
+    laguage: 'German',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: false,
+    coasts: ['North', 'Baltic'],
+  },
+  {
+    name: 'Netherlands',
+    laguage: 'Dutch',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: false,
+    coasts: ['North'],
+  },
+  {
+    name: 'Belgium',
+    laguage: 'Dutch', // majority
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: false,
+    coasts: ['North'],
+  },
+  {
+    name: 'Switzerland',
+    laguage: 'German', // majority
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: false,
+    peninsular: false,
+    coasts: [],
+  },
+  {
+    name: 'Austria',
+    laguage: 'German', // majority
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: false,
+    peninsular: false,
+    coasts: [],
+  },
+  {
+    name: 'Poland',
+    laguage: 'Polish',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: false,
+    coasts: ['Baltic'],
+  },
+  {
+    name: 'Bulgaria',
+    laguage: 'Bulgarian',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: false,
+    coasts: ['Black'],
+  },
+  {
+    name: 'Romania',
+    laguage: 'Romanian',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: false,
+    coasts: ['Black'],
+  },
+  {
+    name: 'Hungary',
+    laguage: 'Hungarian',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: false,
+    peninsular: false,
+    coasts: [],
+  },
+  {
+    name: 'Serbia',
+    laguage: 'Serbian',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: false,
+    peninsular: false,
+    coasts: [],
+  },
+  {
+    name: 'Greece',
+    laguage: 'Greek',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: true,
+    coasts: ['Mediterranean', 'Aegean'],
+  },
+  {
+    name: 'Turkey',
+    laguage: 'Turkish',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: true,
+    coasts: ['Mediterranean', 'Aegean', 'Black'],
+  },
+  {
+    name: 'Ukraine',
+    laguage: 'Ukranian',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: true,
+    coasts: ['Black'],
+  },
+  {
+    name: 'Russia',
+    laguage: 'Russian',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: true,
+    coasts: ['Black', 'Barents', 'Baltic', 'Caspian'],
+  },
+  {
+    name: 'Norway',
+    laguage: 'Norwegian',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: true,
+    coasts: ['North', 'Norwegian'],
+  },
+  {
+    name: 'England',
+    laguage: 'English',
+    landmass: 'Eurasia',
+    continent: 'Europe',
+    coastal: true,
+    peninsular: false,
+    coasts: ['North', 'Celtic'],
+  },
+]
+
+const centralAmericanCountries = [
+  {
+    name: 'Belize',
+    language: 'English',
+    landmass: 'America',
+    continent: 'Central America',
+    latinAmerica: false,
+    isle: false,
+    isthmus: true,
+    coasts: ['Caribbean'],
+  },
+  {
+    name: 'Costa Rica',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'Central America',
+    latinAmerica: true,
+    isle: false,
+    isthmus: true,
+    coasts: ['Caribbean', 'Pacific'],
+  },
+  {
+    name: 'El Salvador',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'Central America',
+    latinAmerica: true,
+    isle: false,
+    isthmus: true,
+    coasts: ['Pacific'],
+  },
+  {
+    name: 'Guatemala',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'Central America',
+    latinAmerica: true,
+    isle: false,
+    isthmus: true,
+    coasts: ['Caribbean', 'Pacific'],
+  },
+  {
+    name: 'Honduras',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'Central America',
+    latinAmerica: true,
+    isle: false,
+    isthmus: true,
+    coasts: ['Caribbean', 'Pacific'],
+  },
+  {
+    name: 'Nicaragua',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'Central America',
+    latinAmerica: true,
+    isle: false,
+    isthmus: true,
+    coasts: ['Caribbean', 'Pacific'],
+  },
+  {
+    name: 'Panama',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'Central America',
+    latinAmerica: true,
+    isle: false,
+    isthmus: true,
+    coasts: ['Caribbean', 'Pacific'],
+  },
+  {
+    name: 'Cuba',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'Central America',
+    latinAmerica: true,
+    isle: true,
+    isthmus: false,
+    coasts: ['Caribbean'],
+  },
+  {
+    name: 'Dominican Republic',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'Central America',
+    latinAmerica: true,
+    isle: true,
+    isthmus: false,
+    coasts: ['Caribbean'],
+  },
+  {
+    name: 'Haiti',
+    language: 'Creole',
+    landmass: 'America',
+    continent: 'Central America',
+    latinAmerica: false,
+    isle: true,
+    isthmus: false,
+    coasts: ['Caribbean'],
+  },
+  {
+    name: 'Jamaica',
+    language: 'English',
+    landmass: 'America',
+    continent: 'Central America',
+    latinAmerica: false,
+    isle: true,
+    isthmus: false,
+    coasts: ['Caribbean'],
+  },
+]
+
+const southAmericanCountries = [
+  {
+    name: 'Colombia',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coasts: ['Pacific', 'Atlantic'],
+  },
+  {
+    name: 'Venezuela',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coasts: ['Atlantic'],
+  },
+  {
+    name: 'Brazil',
+    language: 'Portuguese',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coasts: ['Atlantic'],
+  },
+  {
+    name: 'Ecuador',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coasts: ['Pacific'],
+  },
+  {
+    name: 'Peru',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coasts: ['Pacific'],
+  },
+  {
+    name: 'Bolivia',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: false,
+    coasts: [],
+  },
+  {
+    name: 'Paraguay',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: false,
+    coasts: [],
+  },
+  {
+    name: 'Chile',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coasts: ['Pacific'],
+  },
+  {
+    name: 'Argentina',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coasts: ['Atlantic'],
+  },
+  {
+    name: 'Uruguay',
+    language: 'Spanish',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: true,
+    coastal: true,
+    coasts: ['Atlantic'],
+  },
+  {
+    name: 'Guyana',
+    language: 'English',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: false,
+    coastal: true,
+    coasts: ['Atlantic'],
+  },
+  {
+    name: 'Suriname',
+    language: 'Dutch',
+    landmass: 'America',
+    continent: 'South America',
+    latinAmerica: false,
+    coastal: true,
+    coasts: ['Atlantic'],
+  },
+]
 
 // Select a random number
 function getRandomInt(min, max) {
@@ -19,7 +668,7 @@ function getCelebrity() {
 
 // Timeline functions 
 // Check if celebrity existed after middle ages
-function isAfterMiddleAges(cel) {
+function isAfterMiddleAges(cel) { 
   let res = false;
   cel.centuries.forEach(elem => {
     if (elem > 15) {
@@ -276,7 +925,18 @@ function guessCountry(cel, country) {
 // End of helper functions ***************************
 
 // Game Phases
+
 const riddle = getCelebrity();
+
+// document.getElementById("start-game").onclick = startGame;
+// document.getElementById("start-game").onclick = function () { alert('hello!'); };
+
+// const el = document.getElementById("start-game");
+// if (el.addEventListener) {
+//   el.addEventListener("click", startGame, false);
+// } else if (el.attachEvent) {
+//   el.attachEvent('onclick', startGame);
+// }
 
 // Timeline Phase 1
 const timelineQuest = {
@@ -562,7 +1222,18 @@ function s5() {
   console.log('Ready to start Phase 5');
 }
 
-s1();
-console.log(riddle.name, answer.country);
+function startGame() {
+  $('div.title').replaceWith('<h2>Timeline questions</h2>');
+  $('div.sub-title').replaceWith('<h2></h2>');
+  $('.start-button').on('click', function() {
+    s1Questions.forEach( elem => {
+      let r = $('<input class="new-button" type="button" value=' + elem + '/>');
+    $('.jumbotron').append(r);
+    });
+    $('.start-button').hide();
+  });
+  s1();
+  console.log(riddle.name);
+}
 
 
