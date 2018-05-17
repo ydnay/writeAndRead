@@ -676,7 +676,6 @@ function isAfterMiddleAges(cel) { 
     }
   });
 
-  console.log('after Middle Ages function called');
   return res;
 };
 
@@ -690,6 +689,7 @@ function is16Cent(cel) {
   let res = false;
   cel.centuries.forEach(elem => {
     if (elem === 16) {
+      answer.centuries.push(16);
       res = true;
     }
   });
@@ -702,6 +702,7 @@ function is17Cent(cel) {
   let res = false;
   cel.centuries.forEach(elem => {
     if (elem === 17) {
+      answer.centuries.push(17);
       res = true;
     }
   });
@@ -714,6 +715,7 @@ function is18Cent(cel) {
   let res = false;
   cel.centuries.forEach(elem => {
     if (elem === 18) {
+      answer.centuries.push(18);
       res = true;
     }
   });
@@ -726,6 +728,7 @@ function is19Cent(cel) {
   let res = false;
   cel.centuries.forEach(elem => {
     if (elem === 19) {
+      answer.centuries.push(19);
       res = true;
     }
   });
@@ -738,6 +741,7 @@ function is20Cent(cel) {
   let res = false;
   cel.centuries.forEach(elem => {
     if (elem === 20) {
+      answer.centuries.push(20);
       res = true;
     }
   });
@@ -750,6 +754,7 @@ function is21Cent(cel) {
   let res = false;
   cel.centuries.forEach(elem => {
     if (elem === 21) {
+      answer.centuries.push(21);
       res = true;
     }
   });
@@ -762,7 +767,6 @@ function is21Cent(cel) {
 // Landmass functions
 // Check if celebrity is from Eurasia
 function isFromEurasia(cel) {
-  console.log('isFromEurasia was called');
   return cel.land === 'Eurasia'
 }
 
@@ -834,7 +838,6 @@ function isAdriatic(cel) {
 }
 
 function isCeltic(cel) {
-  console.log('isCeltic was called');
   return cel.coasts.includes('Celtic');
 }
 
@@ -856,7 +859,6 @@ function isLatinAmerican(cel) {
 
 // Finding a Cental Amercian country
 function isAnIsland(cel) {
-  console.log('isAnIsland was called');
   const country = cel.country;
   let index = 0;
   for (let i = 0; i < centralAmericanCountries.length; i++) {
@@ -945,10 +947,10 @@ const riddle = getCelebrity();
 // Timeline Phase 1
 const timelineQuest = {
   'after Middle Ages?': isAfterMiddleAges,
-  'after French Revolution?': isAfterFrenchRev,
   '16th Century': is16Cent,
   '17th Century': is17Cent,
   '18th Century': is18Cent,
+  'after French Revolution?': isAfterFrenchRev,
   '19th Century': is19Cent,
   '20th Century': is20Cent,
   '21st Century': is21Cent,
@@ -956,9 +958,9 @@ const timelineQuest = {
 
 // Landmass Phase 2
 const landmassQuest = {
-  'Eurasia': isFromEurasia(riddle),
-  'America': isFromAmerica(riddle),
-  'Other landmass': isFromOtherLand(riddle),
+  'Eurasia': isFromEurasia,
+  'America': isFromAmerica,
+  'Other landmass': isFromOtherLand,
 }
 
 // Continent Phase 3
@@ -1002,37 +1004,67 @@ const southAmeQuest = {
 
 // Game States
 // S1 Initial State, Timeline
-let counter = 9; // initial counter
-// let phase = 'timeline'; // initial phase
-// let answer = { // initial guessed celecrity
-//   centuries: [],
-// };
-let s1Questions = Object.keys(timelineQuest);
-let userQuestion = s1Questions[0];
+let counter = 9;
+const answer = { // initial guessed celecrity
+  name: '',
+  centuries: [],
+};
 
-function handleClick(e) {
-  console.log('hey');
-  s1Questions.forEach(elem => {
-    let callbackName = $(e).data(timelineQuest[elem](riddle));
+function updateCounter() {
+  // return $('div.sub-title').replaceWith('<h4>Remaining No\'s ' + counter + '</h4>') && counter;
+  return counter;
+}
+
+function checkWin() {
+  let res = false;
+  riddle.akas.forEach(aka => {
+    if (answer.name === aka) {
+      res = true;
+    }
   })
-  // select the proper function based on callback name
+
+  return res;
+}
+
+function checkLose() { if (counter === 0) { return true; } }
+
+let s1Questions = Object.keys(timelineQuest);
+
+function handleClick(question) {
+  if (question in timelineQuest) {
+    console.log(timelineQuest[question](riddle), answer.centuries, counter);
+    if (!timelineQuest[question](riddle)) {
+      counter--;
+    } else {
+      s1();
+    }
+  } else {
+    console.log('err');
+  }
 }
 
 function startGame() {
   console.log(riddle.name);
   $('div.title').replaceWith('<h2>Timeline questions</h2>');
-  // $('div.sub-title').replaceWith('<h2></h2>');
+  $('div.sub-title').replaceWith('<h4>Remaining No\'s ' + counter + '</h4>');
   $('.start-button').on('click', () => {
-    s1Questions.forEach(function(elem) {
-      let newBut = $('<input class="timeline-btn" type="button" value="' + elem + '" data-callback=" ' + timelineQuest[elem] + ' "  onclick="handleClick(this)" />');
-      console.log(newBut);
-      $('.jumbotron').append(newBut);
+    s1Questions.forEach(elem => {
+      const btn = document.createElement("input");
+      btn.type = "button";
+      btn.value = elem;
+      btn.onclick = () => handleClick(elem);
+      $('.jumbotron').append(btn);
     });
     $('.start-button').hide();
   });
 }
 
-// function s1() {
+// Check if S1 exit condition
+function s1() {
+  if (answer.centuries.length > 0) {
+    s2();
+  }
+
 //   if (timelineQuest[userQuestion]) {
 //     userQuestion = s1Questions[1];
 //     if (timelineQuest[userQuestion]) {
@@ -1075,11 +1107,12 @@ function startGame() {
 //     console.log('Counter after timeline: ' + counter, ', Century: ' + answer.centuries);
 //     s2();
 //   }
-// }
+}
 
-// // S2, Landmass
+// S2, Landmass
 // let s2Questions = Object.keys(landmassQuest);
-// function s2() {
+function s2() {
+  console.log('ready to s2', counter, answer);
 //     if (landmassQuest[s2Questions[0]]) {
 //     answer.landmass = 'Eurasia';
 //   } else if (landmassQuest[s2Questions[1]]) {
@@ -1095,7 +1128,7 @@ function startGame() {
 //     console.log('Counter after landmass: ' + counter, ', Landmass: ' + answer.landmass);
 //     s3();
 //   }
-// }
+}
 
 // // S3, Continent
 // function s3() {
