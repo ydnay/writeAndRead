@@ -1030,7 +1030,7 @@ function checkLose() { if (counter === 0) { return true; } }
 
 let s1Questions = Object.keys(timelineQuest);
 
-function handleClick(question) {
+function handleClickTimeline(question) {
   if (question in timelineQuest) {
     console.log(timelineQuest[question](riddle), answer.centuries, counter);
     if (!timelineQuest[question](riddle)) {
@@ -1043,16 +1043,17 @@ function handleClick(question) {
   }
 }
 
-function startGame() {
+function renderTimeline() {
   console.log(riddle.name);
   $('div.title').replaceWith('<h2>Timeline questions</h2>');
   $('div.sub-title').replaceWith('<h4>Remaining No\'s ' + counter + '</h4>');
   $('.start-button').on('click', () => {
     s1Questions.forEach(elem => {
       const btn = document.createElement("input");
+      btn.class = "timeline";
       btn.type = "button";
       btn.value = elem;
-      btn.onclick = () => handleClick(elem);
+      btn.onclick = () => handleClickTimeline(elem);
       $('.jumbotron').append(btn);
     });
     $('.start-button').hide();
@@ -1064,217 +1065,22 @@ function s1() {
   if (answer.centuries.length > 0) {
     s2();
   }
-
-//   if (timelineQuest[userQuestion]) {
-//     userQuestion = s1Questions[1];
-//     if (timelineQuest[userQuestion]) {
-//       userQuestion = s1Questions[5]; // cent 19
-//       if (timelineQuest[userQuestion]) {
-//         answer.centuries.push(19);
-//       } else {
-//         counter--
-//         userQuestion = s1Questions[6]; // cent 20
-//         if (timelineQuest[userQuestion]) {
-//           answer.centuries.push(20);
-//         } else {
-//           counter--;
-//           answer.centuries.push(21);
-//         }
-//       }
-//     } else {
-//       counter--;
-//       userQuestion = s1Questions[2] // cent 16
-//       if (timelineQuest[userQuestion]) {
-//         answer.centuries.push(16);
-//       } else {
-//         counter--
-//         userQuestion = s1Questions[3]; // cent 17
-//         if (timelineQuest[userQuestion]) {
-//           answer.centuries.push(17);
-//         } else {
-//           counter--
-//           answer.centuries.push(18);
-//         }
-//       }
-//     }
-//   } else {
-//     counter --;
-//     console.log('old fox here');
-//   }
-
-//   // check if state exit condition was reached
-//   if (answer.centuries.length > 0) {
-//     console.log('Counter after timeline: ' + counter, ', Century: ' + answer.centuries);
-//     s2();
-//   }
 }
 
 // S2, Landmass
-// let s2Questions = Object.keys(landmassQuest);
+let s2Questions = Object.keys(landmassQuest);
 function s2() {
   console.log('ready to s2', counter, answer);
-//     if (landmassQuest[s2Questions[0]]) {
-//     answer.landmass = 'Eurasia';
-//   } else if (landmassQuest[s2Questions[1]]) {
-//     counter--;
-//     answer.landmass = 'America';
-//   } else {
-//     counter--;
-//     answer.landmass = 'Other';
-//   }
-
-//   // check if state exit condition was reached
-//   if (answer.landmass) {
-//     console.log('Counter after landmass: ' + counter, ', Landmass: ' + answer.landmass);
-//     s3();
-//   }
 }
 
 // // S3, Continent
 // function s3() {
-//   if (answer.landmass === 'Eurasia') {
-//     if (continentQuest['Europe']) {
-//       answer.continent = 'Europe';
-//     } else {
-//       counter--;
-//       answer.continent = 'Asia';
-//     }
-//   } else if (answer.landmass === 'America') {
-//     if (continentQuest['North America']) {
-//       answer.continent = 'North America';
-//     } else if (continentQuest['South America']) {
-//       counter--;
-//       answer.continent = 'South America';
-//     } else {
-//       counter -= 2;
-//       answer.continent = 'Central America';
-//     }
-//   } else {
-//     if (continentQuest['Africa']) {
-//       answer.continent = 'Africa';
-//     } else {
-//       counter--;
-//       answer.continent = 'Oceania';
-//     }
-//   }
 
-//   // check if state exit condition was reached
-//   if (answer.continent) {
-//     console.log('Counter after continent: ' + counter, ', Continent: ' + answer.continent);
-//     s4();
-//   }
 // }
 
 // // S4, Continent Cases
 // function s4() {
-//   // Europe Cases
-//   if (answer.continent === 'Europe') {
-//     if (europeQuest['Coastal']) {
-//       answer.coastal = true;
-//       if (europeQuest['Mediterranean']) {
-//         answer.coasts = [];
-//         answer.coasts.push('Mediterranean');
-//         if (europeQuest['Peninsular']) {
-//           answer.peninsular = true;
-//           if (riddle.country === 'Spain') {
-//             answer.country = 'Spain';
-//           } else if (riddle.country === 'Italy') {
-//             counter--;
-//             answer.country = 'Italy';
-//           } else {
-//             counter -= 2;
-//             answer.country = 'Greece';
-//           }
-//         } else {
-//           counter--;
-//           answer.country = 'France';
-//         }
-//       } else {
-//         counter--;
-//         // Portugal, Germany, Netherlands, Belgium, Poland, Bulgary, Romania, Ukraine, Russia, Norway
-//         if (riddle.country === 'England') {
-//           answer.country = 'England';
-//         }
-//       }
-//     } else {
-//       counter--;
-//       // Switzerland, Austria, Hungary or Serbia
-//     }
-//   }
 
-//   // North America Cases
-//   if (answer.continent === 'North America') {
-//     if (riddle.country === 'United States') {
-//       answer.country = 'United States';
-//     } else if (riddle.country === 'Mexico') {
-//       counter--;
-//       answer.country = 'Mexico';
-//     } else {
-//       counter -= 2;
-//       answer.country = 'Canada';
-//     }
-//   }
-
-//   // Central America Cases
-//   if (answer.continent === 'Central America') {
-//     if (centralAmeQuest['Isthmus']) {
-//       // Bel, Gua, Hon, Sal, Nic, Costa R, Panama
-//     } else {
-//       counter--;
-//       if (centralAmeQuest['Latinamerica']) {
-//         if (riddle.country === 'Cuba') {
-//           answer.country = 'Cuba';
-//         } else if (riddle.country === 'Dominican Republic') {
-//           counter--;
-//           answer.country = 'Dominican Republic';
-//         } else {
-//           counter -= 2;
-//           answer.country = 'Haiti';
-//         }
-//       }
-//     }
-//   }
-
-//   //  South America Cases
-//   if (answer.continent === 'South America') {
-//     if (southAmeQuest['Coastal']) {
-//       answer.coastal = true;
-//       if (southAmeQuest['Spanish']) {
-//         answer.language = 'Spanish';
-//         if (southAmeQuest['Atlantic']) {
-//           answer.coasts = [];
-//           answer.coasts.push('Atlantic');
-//           if (riddle.country === 'Colombia') {
-//             answer.country = 'Colombia';
-//           } else if (riddle.country === 'Argentina') {
-//             counter--;
-//             answer.country = 'Argentina';
-//           } else if (riddle.country === 'Uruguay') {
-//             counter -= 2;
-//             answer.country = 'Uruguay';
-//           } else {
-//             counter -= 3;
-//             answer.country = 'Venezuela';
-//           }
-//         } else {
-//           counter--;
-//           // Chile, Peru, Ecuador
-//         }
-//       } else {
-//         counter--;
-//         // Brasil, Guyana, Suriname
-//       }
-//     } else {
-//       counter--;
-//       // Bolivia or Paraguay
-//     }
-//   }
-
-//   // check if state exit condition was reached
-//   if (answer.country) {
-//     console.log('Counter after continent cases: ' + counter, ', Country: ' + answer.country);
-//     s5();
-//   }
 // }
 
 // function s5() {
