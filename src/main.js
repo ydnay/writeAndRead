@@ -767,17 +767,35 @@ function is21Cent(cel) {
 // Landmass functions
 // Check if celebrity is from Eurasia
 function isFromEurasia(cel) {
-  return cel.land === 'Eurasia'
+  let res = false;
+  if (cel.land === 'Eurasia') {
+    answer.landmass = 'Eurasia';
+    res = true;
+  }
+
+  return res;
 }
 
 // Check if celebrity is from America
 function isFromAmerica(cel) {
-  return cel.land === 'America';
+  let res = false;
+  if (cel.land === 'America') {
+    answer.landmass = 'America';
+    res = true;
+  }
+
+  return res;
 }
 
 // Check if celebrity is different from Eurasia or America
 function isFromOtherLand(cel) {
-  return cel.land !== 'Eurasia' && cel.land !== 'America';
+  let res = false;
+  if (cel.land !== 'Eurasia' && cel.land !== 'America') {
+    answer.landmass = 'Other';
+    res = true;
+  }
+
+  return res;
 }
 // End of landmass.
 
@@ -965,56 +983,60 @@ const landmassQuest = {
 
 // Continent Phase 3
 const continentQuest = {
-  'Europe': isEuropean(riddle),
-  'Asia': isAsian(riddle),
-  'North America': isNorthAmerican(riddle),
-  'Central America': isCentralAmerican(riddle),
-  'South America': isSouthAmerican(riddle),
-  'Africa': isAfrican(riddle),
-  'Oceania': isOceanian(riddle),
+  'Europe': isEuropean,
+  'Asia': isAsian,
+  'North America': isNorthAmerican,
+  'Central America': isCentralAmerican,
+  'South America': isSouthAmerican,
+  'Africa': isAfrican,
+  'Oceania': isOceanian,
 }
 
 // Continental cases Phase 4
 const europeQuest = {
-  'Coastal': isCoastal(riddle),
-  'Peninsular': isPeninsular(riddle),
-  'Mediterranean': isMediterranean(riddle),
-  'North': isNorth(riddle),
-  'Baltic': isBaltic(riddle),
-  'Black': isBlack(riddle),
-  'Adriatic': isAdriatic(riddle),
-  'Celtic': isCeltic(riddle),
+  'Coastal': isCoastal,
+  'Peninsular': isPeninsular,
+  'Mediterranean': isMediterranean,
+  'North': isNorth,
+  'Baltic': isBaltic,
+  'Black': isBlack,
+  'Adriatic': isAdriatic,
+  'Celtic': isCeltic,
   'Atlantic': hasAtlantic(riddle, europeCountries),
 }
 
 const centralAmeQuest = {
-  'Isthmus': isAnIsthmus(riddle),
+  'Isthmus': isAnIsthmus,
   'Atlantic': hasAtlantic(riddle, centralAmericanCountries),
   'Pacific': hasPacific(riddle, centralAmericanCountries),
-  'Insular': isAnIsland(riddle),
-  'Latinamerica': isLatinAmerican(riddle),
+  'Insular': isAnIsland,
+  'Latinamerica': isLatinAmerican,
 }
 
 const southAmeQuest = {
-  'Coastal': isCoastal(riddle),
+  'Coastal': isCoastal,
   'Atlantic': hasAtlantic(riddle, southAmericanCountries),
   'Pacific': hasPacific(riddle, southAmericanCountries),
-  'Spanish': speakSpanish(riddle),
+  'Spanish': speakSpanish,
 }
 
 // Game States
 // S1 Initial State, Timeline
+let s1Questions = Object.keys(timelineQuest);
 let counter = 9;
 const answer = { // initial guessed celecrity
   name: '',
   centuries: [],
+  landmass: '',
 };
 
+// Update counter
 function updateCounter() {
   // return $('div.sub-title').replaceWith('<h4>Remaining No\'s ' + counter + '</h4>') && counter;
   return counter;
 }
 
+// Check if WIN
 function checkWin() {
   let res = false;
   riddle.akas.forEach(aka => {
@@ -1026,23 +1048,24 @@ function checkWin() {
   return res;
 }
 
+// Check if Game Over
 function checkLose() { if (counter === 0) { return true; } }
 
-let s1Questions = Object.keys(timelineQuest);
-
+// Handle click on timeline buttons
 function handleClickTimeline(question) {
   if (question in timelineQuest) {
     console.log(timelineQuest[question](riddle), answer.centuries, counter);
     if (!timelineQuest[question](riddle)) {
       counter--;
     } else {
-      s1();
+      s1(); // pros: after...questions don't exit state. cons: pushes century twice
     }
   } else {
     console.log('err');
   }
 }
 
+// Render timeline questions
 function renderTimeline() {
   console.log(riddle.name);
   $('div.title').replaceWith('<h2>Timeline questions</h2>');
@@ -1050,7 +1073,7 @@ function renderTimeline() {
   $('.start-button').on('click', () => {
     s1Questions.forEach(elem => {
       const btn = document.createElement("input");
-      btn.class = "timeline";
+      btn.classList.add("timeline");
       btn.type = "button";
       btn.value = elem;
       btn.onclick = () => handleClickTimeline(elem);
@@ -1069,14 +1092,47 @@ function s1() {
 
 // S2, Landmass
 let s2Questions = Object.keys(landmassQuest);
+
+// Handle click on landmass buttons
+function handleClickLandmass(question) {
+  if (question in landmassQuest) {
+    console.log(landmassQuest[question](riddle), answer.landmass, counter);
+    if (!landmassQuest[question](riddle)) {
+      counter--;
+    } else {
+      s3();
+    }
+  } else {
+    console.log('err');
+  }
+}
+
+//  Landmass
 function s2() {
   console.log('ready to s2', counter, answer);
+  $('h2').replaceWith('<h2>Landmass questions</h2>');
+  $('h4').replaceWith('<h4>Remaining No\'s ' + counter + '</h4>');
+  $('.timeline').hide();
+  s2Questions.forEach(elem => {
+    const btn = document.createElement("input");
+    btn.classList.add("landmass");
+    btn.type = "button";
+    btn.value = elem;
+    btn.onclick = () => handleClickLandmass(elem);
+    $('.jumbotron').append(btn);
+  });
+  // exit state condition
+  if (answer.landmass) {
+    s3();
+  }
 }
 
 // // S3, Continent
-// function s3() {
+let s3Questions = Object.keys(continentQuest);
 
-// }
+function s3() {
+  console.log('ready to s3', counter, answer);
+}
 
 // // S4, Continent Cases
 // function s4() {
