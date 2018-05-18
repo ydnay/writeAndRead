@@ -952,16 +952,6 @@ function guessCountry(cel, country) {
 
 const riddle = getCelebrity();
 
-// document.getElementById("start-game").onclick = startGame;
-// document.getElementById("start-game").onclick = function () { alert('hello!'); };
-
-// const el = document.getElementById("start-game");
-// if (el.addEventListener) {
-//   el.addEventListener("click", startGame, false);
-// } else if (el.attachEvent) {
-//   el.attachEvent('onclick', startGame);
-// }
-
 // Timeline Phase 1
 const timelineQuest = {
   'after Middle Ages?': isAfterMiddleAges,
@@ -1022,18 +1012,19 @@ const southAmeQuest = {
 
 // Game States
 // S1 Initial State, Timeline
-let s1Questions = Object.keys(timelineQuest);
+const s1Questions = Object.keys(timelineQuest);
 let counter = 9;
 const answer = { // initial guessed celecrity
   name: '',
   centuries: [],
   landmass: '',
+  continent: '',
 };
 
 // Update counter
 function updateCounter() {
-  // return $('div.sub-title').replaceWith('<h4>Remaining No\'s ' + counter + '</h4>') && counter;
-  return counter;
+  console.log('counter updated');
+  return $('h4').replaceWith('<h4>Remaining No\'s ' + counter + '</h4>');
 }
 
 // Check if WIN
@@ -1091,7 +1082,7 @@ function s1() {
 }
 
 // S2, Landmass
-let s2Questions = Object.keys(landmassQuest);
+const s2Questions = Object.keys(landmassQuest);
 
 // Handle click on landmass buttons
 function handleClickLandmass(question) {
@@ -1099,7 +1090,7 @@ function handleClickLandmass(question) {
     console.log(landmassQuest[question](riddle), answer.landmass, counter);
     if (!landmassQuest[question](riddle)) {
       counter--;
-    } else {
+    } else { // exit state condition
       s3();
     }
   } else {
@@ -1121,23 +1112,64 @@ function s2() {
     btn.onclick = () => handleClickLandmass(elem);
     $('.jumbotron').append(btn);
   });
-  // exit state condition
-  if (answer.landmass) {
-    s3();
-  }
 }
 
 // // S3, Continent
-let s3Questions = Object.keys(continentQuest);
+const s3Questions = Object.keys(continentQuest);
+// const s3Eurasia = Object.keys(continentQuest).slice(0, 2);
+// const s3America = Object.keys(continentQuest).slice(2, 5);
+// const s3Other = Object.keys(continentQuest).slice(5);
+// if (answer.landmass === 'Eurasia') {
+//   const s3Questions = s3Eurasia;
+// } else if (answer.landmass === 'America') {
+//   const s3Questions = s3America;
+// } else if (answer.landmass === 'Other') {
+//   const s3Questions = s3Other;
+// }
+
+// Handle click on continent buttons
+function handleClickContinent(question) {
+  if (question in continentQuest) {
+    console.log(continentQuest[question](riddle), answer.continent, counter);
+    if (!continentQuest[question](riddle)) {
+      counter--;
+    } else {
+      s4();
+    }
+  } else {
+    console.log('err');
+  }
+}
 
 function s3() {
   console.log('ready to s3', counter, answer);
+  $('h2').replaceWith('<h2>Continent questions</h2>');
+  $('h4').replaceWith('<h4>Remaining No\'s ' + counter + '</h4>');
+  $('.landmass').hide();
+  let countIndex = 0
+  s3Questions.forEach(elem => {
+    const btn = document.createElement("input");
+    btn.classList.add("continent" + countIndex);
+    btn.type = "button";
+    btn.value = elem;
+    btn.onclick = () => handleClickContinent(elem);
+    $('.jumbotron').append(btn);
+    countIndex++;
+  });
+  // hiding not need buttons. Bad practice!!!!
+  if (answer.landmass === 'Eurasia') {
+    $('.continent2, .continent3, .continent4, .continent5, .continent6').hide();
+  } else if (answer.landmass === 'America') {
+    $('.continent0, .continent1, .continent5, .continent6').hide();
+  } else if (answer.landmass === 'Other') {
+    $('.continent0', '.continent1', '.continent2', '.continent3', '.continent4').hide();
+  }
 }
 
 // // S4, Continent Cases
-// function s4() {
-
-// }
+function s4Europe() {
+  console.log('ready to s4', counter, answer);
+}
 
 // function s5() {
 //   console.log('Ready to start Phase 5');
