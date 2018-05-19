@@ -146,7 +146,7 @@ const celebrities = [
     sex: 'male',
     land: 'America',
     latinAmerica: true,
-    continent: 'Central America and the Caribbean',
+    continent: 'Central America',
     island: true,
     country:'Cuba',
     language: 'Spanish',
@@ -801,19 +801,43 @@ function isFromOtherLand(cel) {
 
 // Finding Continent functions, filtering landmass.
 function isEuropean(cel) {
-  return cel.continent === 'Europe'; // if false => is Asian
+  let res = false;
+  if (cel.continent === 'Europe') {
+    answer.continent = 'Europe';
+    res = true;
+  }
+
+  return res;
 }
 
 function isNorthAmerican(cel) {
-  return cel.continent === 'North America';
+  let res = false;
+  if (cel.continent === 'North America') {
+    answer.continent = 'North America';
+    res = true;
+  }
+
+  return res;
 }
 
 function isSouthAmerican(cel) {
-  return cel.continent === 'South America';
+  let res = false;
+  if (cel.continent === 'South America') {
+    answer.continent = 'South America';
+    res = true;
+  }
+
+  return res;
 }
 
 function isCentralAmerican(cel) {
-  return cel.continent === 'Central America and the Caribbean';
+  let res = false;
+  if (cel.continent === 'Central America') {
+    answer.continent = 'Central America';
+    res = true;
+  }
+
+  return res;
 }
 
 function isAfrican(cel) {
@@ -831,7 +855,13 @@ function isOceanian(cel) {
 // Finding an European country
 // Check if coastal
 function isCoastal(cel) {
-  return cel.coasts; // filter posible country list
+  let res = false;
+  if (cel.coastal) {
+    answer.coasts = cel.coasts;
+    res = true; // filter posible country list
+  }
+
+  return res;
 }
 
 // Find sea 
@@ -984,15 +1014,15 @@ const continentQuest = {
 
 // Continental cases Phase 4
 const europeQuest = {
-  'Coastal': isCoastal,
-  'Peninsular': isPeninsular,
+  // 'Coastal': isCoastal,
+  // 'Peninsular': isPeninsular,
   'Mediterranean': isMediterranean,
   'North': isNorth,
   'Baltic': isBaltic,
   'Black': isBlack,
   'Adriatic': isAdriatic,
   'Celtic': isCeltic,
-  'Atlantic': hasAtlantic(riddle, europeCountries),
+  'Atlantic': hasAtlantic, //two parameters
 }
 
 const centralAmeQuest = {
@@ -1019,12 +1049,14 @@ const answer = { // initial guessed celecrity
   centuries: [],
   landmass: '',
   continent: '',
+  coasts: [],
+  country: '',
 };
 
 // Update counter
 function updateCounter() {
   console.log('counter updated');
-  return $('h4').replaceWith('<h4>Remaining No\'s ' + counter + '</h4>');
+  // return $('h4').replaceWith('<h4>Remaining No\'s ' + counter + '</h4>');
 }
 
 // Check if WIN
@@ -1049,6 +1081,10 @@ function handleClickTimeline(question) {
     if (!timelineQuest[question](riddle)) {
       counter--;
     } else {
+      if (answer.centuries.length > 0) {
+        $('.jumbotron').append("<h6>What we know so far:</h6>");
+        $('.jumbotron').append("<h6><i>Century " + answer.centuries[0] + "</i></h6>");  
+      }
       s1(); // pros: after...questions don't exit state. cons: pushes century twice
     }
   } else {
@@ -1060,7 +1096,7 @@ function handleClickTimeline(question) {
 function renderTimeline() {
   console.log(riddle.name);
   $('div.title').replaceWith('<h2>Timeline questions</h2>');
-  $('div.sub-title').replaceWith('<h4>Remaining No\'s ' + counter + '</h4>');
+  $('div.sub-title').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
   $('.start-button').on('click', () => {
     s1Questions.forEach(elem => {
       const btn = document.createElement("input");
@@ -1102,7 +1138,7 @@ function handleClickLandmass(question) {
 function s2() {
   console.log('ready to s2', counter, answer);
   $('h2').replaceWith('<h2>Landmass questions</h2>');
-  $('h4').replaceWith('<h4>Remaining No\'s ' + counter + '</h4>');
+  $('h5').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
   $('.timeline').hide();
   s2Questions.forEach(elem => {
     const btn = document.createElement("input");
@@ -1134,7 +1170,16 @@ function handleClickContinent(question) {
     if (!continentQuest[question](riddle)) {
       counter--;
     } else {
-      s4();
+      $('i').replaceWith("<h6><i>Century-" + answer.centuries[0] + " Continent-" + answer.continent + "</i></h6>");
+      if (answer.continent === 'Europe') {
+        s4Europe();
+      } else if (answer.continent === 'North America') {
+        console.log('North America');
+      } else if (answer.continent === 'Central America') {
+        console.log('Central America');
+      } else if (answer.continent === 'South America') {
+        console.log('South America');
+      }
     }
   } else {
     console.log('err');
@@ -1144,12 +1189,13 @@ function handleClickContinent(question) {
 function s3() {
   console.log('ready to s3', counter, answer);
   $('h2').replaceWith('<h2>Continent questions</h2>');
-  $('h4').replaceWith('<h4>Remaining No\'s ' + counter + '</h4>');
+  $('h5').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
   $('.landmass').hide();
   let countIndex = 0
   s3Questions.forEach(elem => {
     const btn = document.createElement("input");
-    btn.classList.add("continent" + countIndex);
+    btn.classList.add("continent");
+    btn.classList.add(countIndex);
     btn.type = "button";
     btn.value = elem;
     btn.onclick = () => handleClickContinent(elem);
@@ -1158,20 +1204,75 @@ function s3() {
   });
   // hiding not need buttons. Bad practice!!!!
   if (answer.landmass === 'Eurasia') {
-    $('.continent2, .continent3, .continent4, .continent5, .continent6').hide();
+    $('.2, .3, .4, .5, .6').hide();
   } else if (answer.landmass === 'America') {
-    $('.continent0, .continent1, .continent5, .continent6').hide();
+    $('.0, .1, .5, .6').hide();
   } else if (answer.landmass === 'Other') {
-    $('.continent0', '.continent1', '.continent2', '.continent3', '.continent4').hide();
+    $('.0, .1, .2, .3, .4').hide();
   }
 }
 
-// // S4, Continent Cases
-function s4Europe() {
-  console.log('ready to s4', counter, answer);
+// S4, Continent Cases
+// Europe
+function handleClickCoastal(cel) {
+  const guessCountry = document.createElement("input"); guessCountry.classList.add("guess-country"); guessCountry.type = "text"; guessCountry.placeholder = "Country";
+  const submitCountry = document.createElement("input"); submitCountry.type = "submit"; submitCountry.value = "check";
+  const euroForm = document.createElement("form"); euroForm.appendChild(guessCountry); euroForm.appendChild(submitCountry);
+  euroForm.onsubmit = () => { checkCountry(guessCountry.value); }
+  $('.coastal').replaceWith(euroForm);
+
+  if (cel) {
+    if (!isCoastal(cel)) {
+      $('i').replaceWith("<h6><i>Century:" + answer.centuries[0] + " Continent:" + answer.continent + " Coasts: No coasts</i></h6>");
+      counter--;
+    } else {
+      $('i').replaceWith("<h6><i>Century:" + answer.centuries[0] + " Continent:" + answer.continent + " Coasts:" + answer.coasts + "</i></h6>");
+    }
+  } else {
+    console.log('err handleClickCoastal()');
+  }
 }
 
-// function s5() {
-//   console.log('Ready to start Phase 5');
-// }
+function checkCountry(country) {
+  let res = false;
+  if (country === riddle.country) {
+    answer.country = country;
+    res = true;
+  }
+
+  if (!res) {
+    counter--;
+    } else {
+      s5();
+  }
+
+  return res;
+}
+
+function s4Europe() {
+  console.log('ready to s4', counter, answer);
+  $('h2').replaceWith('<h2>Europe questions</h2>');
+  $('h5').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
+  $('.continent').hide();
+  const euroCoastal = document.createElement("input");
+  euroCoastal.classList.add("coastal");
+  euroCoastal.type = "button";
+  euroCoastal.value = "Is it a country with coasts?";
+  euroCoastal.onclick = () => handleClickCoastal(riddle);
+  $('.jumbotron').append(euroCoastal);
+  $('.jumbotron').append("<h6>Some Eurepean Countries:</h6>");
+  let spanCountIndex = 0;
+  europeCountries.forEach(country => {
+    const span = document.createElement("span");
+    span.classList.add(spanCountIndex)
+    span.innerHTML = country.name + ' ';
+    $('.jumbotron').append(span);
+    spanCountIndex++;
+  });
+}
+
+function s5() {
+  console.log('ready to s5', counter, answer);
+  $('i').replaceWith("<h6><i>Century:" + answer.centuries[0] + " Country:" + answer.country + "</i></h6>");
+}
 
