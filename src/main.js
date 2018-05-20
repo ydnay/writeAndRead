@@ -432,6 +432,10 @@ const europeCountries = [
   },
 ]
 
+const northAmericanCountries = [
+  'Canada', 'United States', 'Mexico'
+]
+
 const centralAmericanCountries = [
   {
     name: 'Belize',
@@ -1123,7 +1127,6 @@ const s2Questions = Object.keys(landmassQuest);
 // Handle click on landmass buttons
 function handleClickLandmass(question) {
   if (question in landmassQuest) {
-    console.log(landmassQuest[question](riddle), answer.landmass, counter);
     if (!landmassQuest[question](riddle)) {
       counter--;
     } else { // exit state condition
@@ -1136,7 +1139,6 @@ function handleClickLandmass(question) {
 
 //  Landmass
 function s2() {
-  console.log('ready to s2', counter, answer);
   $('h2').replaceWith('<h2>Landmass questions</h2>');
   $('h5').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
   $('.timeline').hide();
@@ -1152,16 +1154,6 @@ function s2() {
 
 // // S3, Continent
 const s3Questions = Object.keys(continentQuest);
-// const s3Eurasia = Object.keys(continentQuest).slice(0, 2);
-// const s3America = Object.keys(continentQuest).slice(2, 5);
-// const s3Other = Object.keys(continentQuest).slice(5);
-// if (answer.landmass === 'Eurasia') {
-//   const s3Questions = s3Eurasia;
-// } else if (answer.landmass === 'America') {
-//   const s3Questions = s3America;
-// } else if (answer.landmass === 'Other') {
-//   const s3Questions = s3Other;
-// }
 
 // Handle click on continent buttons
 function handleClickContinent(question) {
@@ -1174,7 +1166,7 @@ function handleClickContinent(question) {
       if (answer.continent === 'Europe') {
         s4Europe();
       } else if (answer.continent === 'North America') {
-        console.log('North America');
+        s4NorthAmerica();
       } else if (answer.continent === 'Central America') {
         console.log('Central America');
       } else if (answer.continent === 'South America') {
@@ -1187,7 +1179,6 @@ function handleClickContinent(question) {
 }
 
 function s3() {
-  console.log('ready to s3', counter, answer);
   $('h2').replaceWith('<h2>Continent questions</h2>');
   $('h5').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
   $('.landmass').hide();
@@ -1231,6 +1222,7 @@ function handleClickCoastal(cel) {
   } else {
     console.log('err handleClickCoastal()');
   }
+
 }
 
 function checkCountry(country) {
@@ -1238,12 +1230,6 @@ function checkCountry(country) {
   if (country === riddle.country) {
     answer.country = country;
     res = true;
-  }
-
-  if (!res) {
-    counter--;
-    } else {
-      s5();
   }
 
   return res;
@@ -1254,12 +1240,12 @@ function s4Europe() {
   $('h2').replaceWith('<h2>Europe questions</h2>');
   $('h5').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
   $('.continent').hide();
-  const euroCoastal = document.createElement("input");
-  euroCoastal.classList.add("coastal");
-  euroCoastal.type = "button";
-  euroCoastal.value = "Is it a country with coasts?";
-  euroCoastal.onclick = () => handleClickCoastal(riddle);
-  $('.jumbotron').append(euroCoastal);
+  const coastal = document.createElement("input");
+  coastal.classList.add("coastal");
+  coastal.type = "button";
+  coastal.value = "Is it a country with coasts?";
+  coastal.onclick = () => handleClickCoastal(riddle);
+  $('.jumbotron').append(coastal);
   $('.jumbotron').append("<h6>Some Eurepean Countries:</h6>");
   let spanCountIndex = 0;
   europeCountries.forEach(country => {
@@ -1269,7 +1255,45 @@ function s4Europe() {
     $('.jumbotron').append(span);
     spanCountIndex++;
   });
+
+  if(!answer.country) {
+    counter--;
+    handleClickCoastal();
+  } else {
+    s5();
+  }
 }
+
+// North America
+function handleClickNorthAmerica(country) {
+  if (country) {
+    console.log(country);
+    if (country !== riddle.country) {
+      counter--;
+    } else {
+      answer.country = country;
+      s5();
+    }
+  } else {
+    console.log('err handleClickNorthAmerica()');
+  }
+}
+
+function s4NorthAmerica() {
+  console.log('ready to s4', counter, answer);
+  $('h2').replaceWith('<h2>North America questions</h2>');
+  $('h5').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
+  $('.continent').hide();
+  northAmericanCountries.forEach(elem => {
+    const btn = document.createElement("input");
+    btn.classList.add("north-america");
+    btn.type = "button";
+    btn.value = elem;
+    btn.onclick = () => handleClickNorthAmerica(elem);
+    $('.jumbotron').append(btn);
+  });
+}
+
 
 function s5() {
   console.log('ready to s5', counter, answer);
