@@ -1222,7 +1222,6 @@ function handleClickCoastal(cel) {
   } else {
     console.log('err handleClickCoastal()');
   }
-
 }
 
 function checkCountry(country) {
@@ -1255,13 +1254,13 @@ function s4Europe() {
     $('.jumbotron').append(span);
     spanCountIndex++;
   });
-
-  if(!answer.country) {
-    counter--;
-    handleClickCoastal();
-  } else {
-    s5();
-  }
+  console.log(answ)
+  // if(!answer.country) {
+  //   counter--;
+  //   handleClickCoastal();
+  // } else {
+  //   s5();
+  // }
 }
 
 // North America
@@ -1293,7 +1292,6 @@ function s4NorthAmerica() {
     $('.jumbotron').append(btn);
   });
 }
-
 
 function s5() {
   console.log('ready to s5', counter, answer);
