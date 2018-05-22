@@ -1059,8 +1059,7 @@ const answer = { // initial guessed celecrity
 
 // Update counter
 function updateCounter() {
-  console.log('counter updated');
-  // return $('h4').replaceWith('<h4>Remaining No\'s ' + counter + '</h4>');
+  return $('h5').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
 }
 
 // Check if WIN
@@ -1084,6 +1083,7 @@ function handleClickTimeline(question) {
     console.log(timelineQuest[question](riddle), answer.centuries, counter);
     if (!timelineQuest[question](riddle)) {
       counter--;
+      updateCounter();
     } else {
       if (answer.centuries.length > 0) {
         $('.jumbotron').append("<h6>What we know so far:</h6>");
@@ -1100,7 +1100,7 @@ function handleClickTimeline(question) {
 function renderTimeline() {
   console.log(riddle.name);
   $('div.title').replaceWith('<h2>Timeline questions</h2>');
-  $('div.sub-title').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
+  updateCounter();
   $('.start-button').on('click', () => {
     s1Questions.forEach(elem => {
       const btn = document.createElement("input");
@@ -1129,6 +1129,7 @@ function handleClickLandmass(question) {
   if (question in landmassQuest) {
     if (!landmassQuest[question](riddle)) {
       counter--;
+      updateCounter();
     } else { // exit state condition
       s3();
     }
@@ -1140,7 +1141,6 @@ function handleClickLandmass(question) {
 //  Landmass
 function s2() {
   $('h2').replaceWith('<h2>Landmass questions</h2>');
-  $('h5').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
   $('.timeline').hide();
   s2Questions.forEach(elem => {
     const btn = document.createElement("input");
@@ -1161,6 +1161,7 @@ function handleClickContinent(question) {
     console.log(continentQuest[question](riddle), answer.continent, counter);
     if (!continentQuest[question](riddle)) {
       counter--;
+      updateCounter();
     } else {
       $('i').replaceWith("<h6><i>Century-" + answer.centuries[0] + " Continent-" + answer.continent + "</i></h6>");
       if (answer.continent === 'Europe') {
@@ -1180,7 +1181,6 @@ function handleClickContinent(question) {
 
 function s3() {
   $('h2').replaceWith('<h2>Continent questions</h2>');
-  $('h5').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
   $('.landmass').hide();
   let countIndex = 0
   s3Questions.forEach(elem => {
@@ -1193,7 +1193,7 @@ function s3() {
     $('.jumbotron').append(btn);
     countIndex++;
   });
-  // hiding not need buttons. Bad practice!!!!
+  // hidding not need buttons. Bad practice!!!!
   if (answer.landmass === 'Eurasia') {
     $('.2, .3, .4, .5, .6').hide();
   } else if (answer.landmass === 'America') {
@@ -1232,16 +1232,13 @@ function checkCountry(country) {
     s5();
   } else {
     counter--;
-    guessCountry.placeholder = "Country";
+    updateCounter();
   }
-
-  // return res;
 }
 
 function s4Europe() {
   console.log('ready to s4', counter, answer);
   $('h2').replaceWith('<h2>Europe questions</h2>');
-  $('h5').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
   $('.continent').hide();
   const coastal = document.createElement("input");
   coastal.classList.add("coastal");
@@ -1266,6 +1263,7 @@ function handleClickNorthAmerica(country) {
     console.log(country);
     if (country !== riddle.country) {
       counter--;
+      updateCounter();
     } else {
       answer.country = country;
       s5();
@@ -1278,7 +1276,6 @@ function handleClickNorthAmerica(country) {
 function s4NorthAmerica() {
   console.log('ready to s4', counter, answer);
   $('h2').replaceWith('<h2>North America questions</h2>');
-  $('h5').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
   $('.continent').hide();
   northAmericanCountries.forEach(elem => {
     const btn = document.createElement("input");
