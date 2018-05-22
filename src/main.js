@@ -1207,9 +1207,9 @@ function s3() {
 // Europe
 function handleClickCoastal(cel) {
   const guessCountry = document.createElement("input"); guessCountry.classList.add("guess-country"); guessCountry.type = "text"; guessCountry.placeholder = "Country";
-  const submitCountry = document.createElement("input"); submitCountry.type = "submit"; submitCountry.value = "check";
+  const submitCountry = document.createElement("input"); submitCountry.type = "button"; submitCountry.value = "check";
   const euroForm = document.createElement("form"); euroForm.appendChild(guessCountry); euroForm.appendChild(submitCountry);
-  euroForm.onsubmit = () => { checkCountry(guessCountry.value); }
+  submitCountry.onclick = () => { checkCountry(guessCountry.value); }
   $('.coastal').replaceWith(euroForm);
 
   if (cel) {
@@ -1218,7 +1218,7 @@ function handleClickCoastal(cel) {
       counter--;
     } else {
       $('i').replaceWith("<h6><i>Century:" + answer.centuries[0] + " Continent:" + answer.continent + " Coasts:" + answer.coasts + "</i></h6>");
-    }
+    } 
   } else {
     console.log('err handleClickCoastal()');
   }
@@ -1229,9 +1229,13 @@ function checkCountry(country) {
   if (country === riddle.country) {
     answer.country = country;
     res = true;
+    s5();
+  } else {
+    counter--;
+    guessCountry.placeholder = "Country";
   }
 
-  return res;
+  // return res;
 }
 
 function s4Europe() {
@@ -1254,13 +1258,6 @@ function s4Europe() {
     $('.jumbotron').append(span);
     spanCountIndex++;
   });
-  console.log(answ)
-  // if(!answer.country) {
-  //   counter--;
-  //   handleClickCoastal();
-  // } else {
-  //   s5();
-  // }
 }
 
 // North America
