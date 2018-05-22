@@ -1086,11 +1086,12 @@ const answer = { // initial guessed celecrity
 
 // Update counter
 function updateCounter() {
+  checkLose()
   return $('h5').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
 }
 
 // Check if Game Over
-function checkLose() { if (counter === 0) { return true; } }
+function checkLose() { if (counter === 0) { return s8(); } }
 
 // Handle click on timeline buttons
 function handleClickTimeline(question) {
@@ -1113,7 +1114,7 @@ function handleClickTimeline(question) {
 
 // Render timeline questions
 function renderTimeline() {
-  console.log(riddle.name);
+  // console.log(riddle.name);
   $('div.title').replaceWith('<h2>Timeline questions</h2>');
   updateCounter();
   $('.start-button').on('click', () => {
@@ -1365,6 +1366,14 @@ function s7() {
   $('.jumbotron').replaceWith(win);
   $('.jumbotron').append("<br>" + riddle.synopsis);
   // $('.jumbotron').append("<img src=" + riddle.gif + "alt=Newtons Pic>");
+}
+
+function s8() {
+  const loose = document.createElement("div");
+  loose.classList.add("jumbotron", "text-center");
+  loose.innerHTML = "Usted es un COMEMIERDA";
+  $('.jumbotron').replaceWith(loose);
+  $('.jumbotron').append("<br> The right answer is: " + riddle.name);
 }
 
 // Check if WIN
