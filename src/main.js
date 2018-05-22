@@ -236,7 +236,7 @@ const celebrities = [
     mainField: 'science',
     tip: 'She discovered two chemical elements, polonium and radium',
     fields: ['physicist', 'chemist'],
-    akas: ['Marie Sklodowska Curie', 'Maria Salomea Sklodowska', 'Marie Curie', 'Maria Curie, Curie'],
+    akas: ['Marie Sklodowska Curie', 'Maria Salomea Sklodowska', 'Marie Curie', 'Maria Curie', 'Curie'],
     synopsis: 'Marie Curie, born Maria Salomea Skłodowska (7 November 1867 – 4 July 1934) was a Polish and naturalized-French physicist and chemist who conducted pioneering research on radioactivity. She was the first woman to win a Nobel Prize, the first person and only woman to win twice, the only person to win a Nobel Prize in two different sciences, and was part of the Curie family legacy of five Nobel Prizes. She was also the first woman to become a professor at the University of Paris, and in 1995 became the first woman to be entombed on her own merits in the Panthéon in Paris.',
   },
   // {
@@ -1339,7 +1339,7 @@ function s5() {
 // Handle celebrity form
 function handleClickCelebrityForm(celebrity) {
   if (celebrity) {
-    if (celebrity !== riddle.name) {
+    if (!searchAka(celebrity)) {
       counter--;
       updateCounter();
     } else {
@@ -1348,6 +1348,18 @@ function handleClickCelebrityForm(celebrity) {
   } else {
     console.log('err, handleCLickCelebrityForm');
   }
+}
+
+// Search answer in akas
+function searchAka(name) {
+  let res = false;
+  riddle.akas.forEach(aka => {
+    if (name === aka) {
+      res = true;
+    }
+  })
+
+  return res;
 }
 
 function s6() {
@@ -1379,16 +1391,4 @@ function s8() {
   loose.innerHTML = "Usted es un COMEMIERDA";
   $('.jumbotron').replaceWith(loose);
   $('.jumbotron').append("<br> The right answer is: " + riddle.name);
-}
-
-// Check if WIN
-function checkWin() {
-  let res = false;
-  riddle.akas.forEach(aka => {
-    if (answer.name === aka) {
-      res = true;
-    }
-  })
-
-  return res;
 }
