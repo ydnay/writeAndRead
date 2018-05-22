@@ -24,6 +24,7 @@ const celebrities = [
     peninsular: false,
     coasts: ['North'],
     mainField: 'science',
+    tip: 'The Father of Classical Mechanics',
     fields: ['mathematician', 'astronomer', 'theologian', 'author', 'physicist'],
     akas: ['Isaac Newton', 'Newton'],
   },
@@ -42,6 +43,7 @@ const celebrities = [
     coastal: true,
     coasts: ['Pacific', 'Atlantic'],
     mainField: 'politics',
+    tip: 'The Father of Classical Mechanics',
     fields: ['lawyer', 'politician'],
     akas: ['Abraham Lincoln', 'Lincoln'],
   },
@@ -134,6 +136,7 @@ const celebrities = [
     music: false,
     literature: false,
     dance: false,
+    tip: 'The Father of Classical Mechanics',
     fields: ['actor', 'comedian','sreenwriter', 'producer'],
     akas: ['Mario Moreno', 'Cantinflas'],
   },
@@ -182,6 +185,7 @@ const celebrities = [
     music: false,
     literature: true,
     dance: false,
+    tip: 'The Father of Classical Mechanics',
     fields: ['writer', 'novelist'],
     akas: ['Miguel de Cervantes y Saavedra', 'Miguel de Cervantes', 'Miguel Cervantes', 'Cervantes', 'El manco de Lepanto'],
   },
@@ -205,6 +209,7 @@ const celebrities = [
     music: true,
     literature: false,
     dance: false,
+    tip: 'The Father of Classical Mechanics',
     fields: ['singer', 'tenor'],
     akas: ['Luciano Pavarotti', 'Pavarotti'],
   },
@@ -223,6 +228,7 @@ const celebrities = [
     peninsular: false,
     coasts: ['Mediterranean'],
     mainField: 'science',
+    tip: 'The Father of Classical Mechanics',
     fields: ['physicist', 'chemist'],
     akas: ['Marie Sklodowska Curie', 'Maria Salomea Sklodowska', 'Marie Curie', 'Maria Curie'],
   },
@@ -987,9 +993,9 @@ function isPolitician (cel) {
 }
 
 // Guess celebrity
-function guessCelebrity(cel, name) {
-  return cel.name === name;
-}
+// function guessCelebrity(cel, name) {
+//   return cel.name === name;
+// }
 
 // End of helper functions ***************************
 
@@ -1333,6 +1339,34 @@ function s5() {
   })
 }
 
+// S6, Guess Celebrity
+// Handle celebrity form
+function handleClickCelebrityForm(celebrity) {
+  if (celebrity) {
+    if (celebrity !== riddle.name) {
+      counter--;
+      updateCounter();
+    } else {
+      s7();
+    }
+  } else {
+    console.log('err, handleCLickCelebrityForm');
+  }
+}
+
 function s6() {
   console.log('ready to s6');
+  $('input').hide();
+  $('i').replaceWith("<h6><i>Century:" + answer.centuries[0] + ", Country:" + answer.country + "</i></h6>");
+  $('.jumbotron').append("<h6><i>a notorious " + answer.mainField + ", " + riddle.sex + "</i></h6>");
+  $('.jumbotron').append("<h6><i>" + riddle.tip + "</i></h6>");
+  const guessCelebrity = document.createElement("input"); guessCelebrity.classList.add("guess-celebrity"); guessCelebrity.type = "text"; guessCelebrity.placeholder = "Celebrity";
+  const submitCelebrity = document.createElement("input"); submitCelebrity.type = "button"; submitCelebrity.value = "check";
+  const celebrityForm = document.createElement("form"); celebrityForm.appendChild(guessCelebrity); celebrityForm.appendChild(submitCelebrity);
+  submitCelebrity.onclick = () => { handleClickCelebrityForm(guessCelebrity.value); }
+  $('.jumbotron').append(celebrityForm);
+}
+
+function s7() {
+  console.log('ready to s7');
 }
