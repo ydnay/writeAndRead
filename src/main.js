@@ -27,6 +27,8 @@ const celebrities = [
     tip: 'The Father of Classical Mechanics',
     fields: ['mathematician', 'astronomer', 'theologian', 'author', 'physicist'],
     akas: ['Isaac Newton', 'Newton'],
+    synopsis: 'Sir Isaac Newton PRS (25 December 1642 – 20 March 1726/27) was an English mathematician, astronomer, theologian, author and physicist (described in his own day as a "natural philosopher") who is widely recognised as one of the most influential scientists of all time, and a key figure in the scientific revolution. His book Philosophiæ Naturalis Principia Mathematica ("Mathematical Principles of Natural Philosophy"), first published in 1687, laid the foundations of classical mechanics. Newton also made pathbreaking contributions to optics, and he shares credit with Gottfried Wilhelm Leibniz for developing the infinitesimal calculus.',
+    // gif: './pic/newton',
   },
   {
     name: 'Abraham Lincoln',
@@ -1087,18 +1089,6 @@ function updateCounter() {
   return $('h5').replaceWith('<h5>Remaining No\'s ' + counter + '</h5>');
 }
 
-// Check if WIN
-function checkWin() {
-  let res = false;
-  riddle.akas.forEach(aka => {
-    if (answer.name === aka) {
-      res = true;
-    }
-  })
-
-  return res;
-}
-
 // Check if Game Over
 function checkLose() { if (counter === 0) { return true; } }
 
@@ -1369,4 +1359,22 @@ function s6() {
 
 function s7() {
   console.log('ready to s7');
+  const win = document.createElement("div");
+  win.classList.add("jumbotron", "text-center");
+  win.innerHTML = "CONGRATS!";
+  $('.jumbotron').replaceWith(win);
+  $('.jumbotron').append("<br>" + riddle.synopsis);
+  // $('.jumbotron').append("<img src=" + riddle.gif + "alt=Newtons Pic>");
+}
+
+// Check if WIN
+function checkWin() {
+  let res = false;
+  riddle.akas.forEach(aka => {
+    if (answer.name === aka) {
+      res = true;
+    }
+  })
+
+  return res;
 }
