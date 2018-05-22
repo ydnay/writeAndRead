@@ -1132,6 +1132,8 @@ function renderTimeline() {
       $('.jumbotron').append(btn);
     });
     $('.start-button').hide();
+    $('.jumbotron').append('<p>Middle Ages: Aproximatelly from 5th to 15th Century</p>');
+    $('.jumbotron').append('<p>French Revolution: Late 18th Century</p>')
   });
 }
 
@@ -1162,7 +1164,7 @@ function handleClickLandmass(question) {
 //  Landmass
 function s2() {
   $('h2').replaceWith('<h2>Landmass questions</h2>');
-  $('.timeline').hide();
+  $('.timeline, p').hide();
   s2Questions.forEach(elem => {
     const btn = document.createElement("input");
     btn.classList.add("landmass");
