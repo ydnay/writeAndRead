@@ -45,75 +45,75 @@ const celebrities = [
     fields: ['lawyer', 'politician'],
     akas: ['Abraham Lincoln', 'Lincoln'],
   },
-  {
-    name: 'Mario Benedetti',
-    fictional: false,
-    born: 1920,
-    died: 2009,
-    centuries: [20, 21],
-    sex: 'male',
-    land: 'America',
-    latinAmerica: true,
-    continent: 'South America',
-    country:'Uruguay',
-    language: 'Spanish',
-    coastal: true,
-    coasts: ['Atlantic'],
-    mainField: 'arts',
-    plasticArts: false,
-    performing: false,
-    music: false,
-    literature: true,
-    dance: false,
-    fields: ['journalist', 'novelist', 'poet', 'writer'],
-    akas: ['Mario Benedetti', 'Benedetti'],
-  },
-  {
-    name: 'Mercedes Sosa',
-    fictional: false,
-    born: 1935,
-    died: 2009,
-    centuries: [20, 21],
-    sex: 'female',
-    land: 'America',
-    latinAmerica: true,
-    continent: 'South America',
-    country:'Argentina',
-    language: 'Spanish',
-    coastal: true,
-    coasts: ['Atlantic'],
-    mainField: 'arts',
-    plasticArts: false,
-    performing: false,
-    music: true,
-    literature: false,
-    dance: false,
-    fields: ['singer', 'musician'],
-    akas: ['Mercedes Sosa', 'La Negra'],
-  },
-  {
-    name: 'Gabriel Garcia Marquez',
-    fictional: false,
-    born: 1927,
-    died: 2014,
-    centuries: [20, 21],
-    sex: 'male',
-    land: 'America',
-    latinAmerica: true,
-    continent: 'South America',
-    country:'Colombia',
-    language: 'Spanish',
-    coastal: true,
-    coasts: ['Pacific', 'Atlantic'],
-    mainField: 'arts',
-    plasticArts: false,
-    performing: false,
-    music: false,
-    literature: true,
-    dance: false,
-    fields: ['writer', 'novelist','sreenwriter', 'journalist'],
-    akas: ['Gabriel Garcia Marquez', 'Garcia Marquez', 'Gabo'],
-  },
+  // {
+  //   name: 'Mario Benedetti',
+  //   fictional: false,
+  //   born: 1920,
+  //   died: 2009,
+  //   centuries: [20, 21],
+  //   sex: 'male',
+  //   land: 'America',
+  //   latinAmerica: true,
+  //   continent: 'South America',
+  //   country:'Uruguay',
+  //   language: 'Spanish',
+  //   coastal: true,
+  //   coasts: ['Atlantic'],
+  //   mainField: 'arts',
+  //   plasticArts: false,
+  //   performing: false,
+  //   music: false,
+  //   literature: true,
+  //   dance: false,
+  //   fields: ['journalist', 'novelist', 'poet', 'writer'],
+  //   akas: ['Mario Benedetti', 'Benedetti'],
+  // },
+  // {
+  //   name: 'Mercedes Sosa',
+  //   fictional: false,
+  //   born: 1935,
+  //   died: 2009,
+  //   centuries: [20, 21],
+  //   sex: 'female',
+  //   land: 'America',
+  //   latinAmerica: true,
+  //   continent: 'South America',
+  //   country:'Argentina',
+  //   language: 'Spanish',
+  //   coastal: true,
+  //   coasts: ['Atlantic'],
+  //   mainField: 'arts',
+  //   plasticArts: false,
+  //   performing: false,
+  //   music: true,
+  //   literature: false,
+  //   dance: false,
+  //   fields: ['singer', 'musician'],
+  //   akas: ['Mercedes Sosa', 'La Negra'],
+  // },
+  // {
+  //   name: 'Gabriel Garcia Marquez',
+  //   fictional: false,
+  //   born: 1927,
+  //   died: 2014,
+  //   centuries: [20, 21],
+  //   sex: 'male',
+  //   land: 'America',
+  //   latinAmerica: true,
+  //   continent: 'South America',
+  //   country:'Colombia',
+  //   language: 'Spanish',
+  //   coastal: true,
+  //   coasts: ['Pacific', 'Atlantic'],
+  //   mainField: 'arts',
+  //   plasticArts: false,
+  //   performing: false,
+  //   music: false,
+  //   literature: true,
+  //   dance: false,
+  //   fields: ['writer', 'novelist','sreenwriter', 'journalist'],
+  //   akas: ['Gabriel Garcia Marquez', 'Garcia Marquez', 'Gabo'],
+  // },
   {
     name: 'Mario Moreno',
     fictional: false,
@@ -137,31 +137,31 @@ const celebrities = [
     fields: ['actor', 'comedian','sreenwriter', 'producer'],
     akas: ['Mario Moreno', 'Cantinflas'],
   },
-  {
-    name: 'Jose Marti',
-    fictional: false,
-    born: 1853,
-    died: 1895,
-    centuries: [19],
-    sex: 'male',
-    land: 'America',
-    latinAmerica: true,
-    continent: 'Central America',
-    island: true,
-    country:'Cuba',
-    language: 'Spanish',
-    coastal: true,
-    coasts: ['Atlantic'],
-    island: true, // not really is an archipelago
-    mainField: ['arts', 'politics'], // usually a string, here an array. Use Array.isArray();
-    plasticArts: false,
-    performing: false,
-    music: false,
-    literature: true,
-    dance: false,
-    fields: ['writer', 'poet','assyist', 'journalist', 'translator', 'philosopher', 'theorist'],
-    akas: ['Jose Marti', 'Marti', 'El apostol', 'The apostle'],
-  },
+  // {
+  //   name: 'Jose Marti',
+  //   fictional: false,
+  //   born: 1853,
+  //   died: 1895,
+  //   centuries: [19],
+  //   sex: 'male',
+  //   land: 'America',
+  //   latinAmerica: true,
+  //   continent: 'Central America',
+  //   island: true,
+  //   country:'Cuba',
+  //   language: 'Spanish',
+  //   coastal: true,
+  //   coasts: ['Atlantic'],
+  //   island: true, // not really is an archipelago
+  //   mainField: ['arts', 'politics'], // usually a string, here an array. Use Array.isArray();
+  //   plasticArts: false,
+  //   performing: false,
+  //   music: false,
+  //   literature: true,
+  //   dance: false,
+  //   fields: ['writer', 'poet','assyist', 'journalist', 'translator', 'philosopher', 'theorist'],
+  //   akas: ['Jose Marti', 'Marti', 'El apostol', 'The apostle'],
+  // },
   {
     name: 'Miguel de Cervantes y Saavedra',
     fictional: false,
@@ -970,14 +970,25 @@ function speakSpanish(cel) {
   }
 }
 
+// Guess Field
+// Artist
+function isArtist (cel) {
+  return cel.mainField === 'arts';
+}
+
+// Scientist
+function isScientist (cel) {
+  return cel.mainField === 'science';
+}
+
+// Politician
+function isPolitician (cel) {
+  return cel.mainField === 'politics';
+}
+
 // Guess celebrity
 function guessCelebrity(cel, name) {
   return cel.name === name;
-}
-
-// Guess country
-function guessCountry(cel, country) {
-  return cel.country === country;
 }
 
 // End of helper functions ***************************
@@ -1044,6 +1055,13 @@ const southAmeQuest = {
   'Spanish': speakSpanish,
 }
 
+// Celebrity Field Phase 5
+const fieldOfCel = {
+  artist: isArtist,
+  scientist: isScientist,
+  politician: isPolitician,
+}
+
 // Game States
 // S1 Initial State, Timeline
 const s1Questions = Object.keys(timelineQuest);
@@ -1055,6 +1073,7 @@ const answer = { // initial guessed celecrity
   continent: '',
   coasts: [],
   country: '',
+  mainField: '',
 };
 
 // Update counter
@@ -1237,7 +1256,7 @@ function checkCountry(country) {
 }
 
 function s4Europe() {
-  console.log('ready to s4', counter, answer);
+  console.log('ready to s4');
   $('h2').replaceWith('<h2>Europe questions</h2>');
   $('.continent').hide();
   const coastal = document.createElement("input");
@@ -1246,15 +1265,6 @@ function s4Europe() {
   coastal.value = "Is it a country with coasts?";
   coastal.onclick = () => handleClickCoastal(riddle);
   $('.jumbotron').append(coastal);
-  $('.jumbotron').append("<h6>Some Eurepean Countries:</h6>");
-  let spanCountIndex = 0;
-  europeCountries.forEach(country => {
-    const span = document.createElement("span");
-    span.classList.add(spanCountIndex)
-    span.innerHTML = country.name + ' ';
-    $('.jumbotron').append(span);
-    spanCountIndex++;
-  });
 }
 
 // North America
@@ -1274,7 +1284,7 @@ function handleClickNorthAmerica(country) {
 }
 
 function s4NorthAmerica() {
-  console.log('ready to s4', counter, answer);
+  console.log('ready to s4');
   $('h2').replaceWith('<h2>North America questions</h2>');
   $('.continent').hide();
   northAmericanCountries.forEach(elem => {
@@ -1286,9 +1296,43 @@ function s4NorthAmerica() {
     $('.jumbotron').append(btn);
   });
 }
+// S5, Field of Celebrity
+const s5Questions = Object.keys(fieldOfCel);
 
-function s5() {
-  console.log('ready to s5', counter, answer);
-  $('i').replaceWith("<h6><i>Century:" + answer.centuries[0] + " Country:" + answer.country + "</i></h6>");
+// Handle click field buttons
+function handleClickField(field) {
+  console.log('hey');
+  if (field in fieldOfCel) {
+    console.log(fieldOfCel[field](riddle), answer.continent, counter);
+    if (!fieldOfCel[field](riddle)) {
+      counter--;
+      updateCounter();
+    } else {
+      answer.mainField = field;
+      s6();
+    }
+  } else {
+    console.log('err handleClickField()');
+  }
 }
 
+function s5() {
+  console.log('ready to s5');
+  $('i').replaceWith("<h6><i>Century:" + answer.centuries[0] + " Country:" + answer.country + "</i></h6>");
+  $('h2').replaceWith('<h2>Field of Celebrity Questions</h2>');
+  $('form, input').hide();
+  console.log(s5Questions);
+  s5Questions.forEach(elem => {
+    console.log(elem);
+    const btn = document.createElement("input");
+    btn.classList.add("field");
+    btn.type = "button";
+    btn.value = elem;
+    btn.onclick = () => handleClickField(elem);
+    $('.jumbotron').append(btn);
+  })
+}
+
+function s6() {
+  console.log('ready to s6');
+}
