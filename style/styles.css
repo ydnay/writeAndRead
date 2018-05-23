@@ -10,7 +10,13 @@
 }
 
 input {
-  margin-top: 20vh;
+  margin-top: 10vh;
   margin-right: 20px;
+  margin-bottom: 40px;
   background-color: lightblue;
+}
+
+img {
+  height: 300px;
+  width: 300px;
 }

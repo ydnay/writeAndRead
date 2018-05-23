@@ -1379,12 +1379,33 @@ function s6() {
 
 function s7() {
   console.log('ready to s7');
-  const win = document.createElement("div");
+  const win = document.createElement("h3");
   win.classList.add("jumbotron", "text-center");
   win.innerHTML = "CONGRATS!";
   $('.jumbotron').replaceWith(win);
-  $('.jumbotron').append("<br>" + riddle.synopsis);
-  // $('.jumbotron').append("<img src=" + riddle.gif + "alt=Newtons Pic>");
+  $('.jumbotron').append("<br><br><h6>" + riddle.synopsis + "</h6>");
+  let source;
+  switch(riddle.name) {
+    case "Isaac Newton":
+      source = "newton.jpg";
+      break;
+    case "Abraham Lincoln":
+      source = "lincoln.jpg";
+      break;
+    case "Mario Moreno":
+      source = "cantinflas.jpg";
+      break;
+    case "Miguel de Cervantes y Saavedra":
+      source = "cervantes.jpg";
+      break;
+    case "Luciano Pavarotti":
+      source = "pavarotti.jpg";
+      break;
+    case "Marie Curie":
+      source = "curie.jpg";
+      break; 
+  }
+  $('.jumbotron').append("<br><img src=./pics/" + source + ">");
 }
 
 function s8() {
