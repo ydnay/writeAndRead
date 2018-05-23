@@ -999,10 +999,21 @@ function isPolitician (cel) {
   return cel.mainField === 'politics';
 }
 
-// Guess celebrity
-// function guessCelebrity(cel, name) {
-//   return cel.name === name;
-// }
+// Sound Constructor
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+      this.sound.play();
+  };
+  this.stop = function(){
+      this.sound.pause();
+  };
+}
 
 // End of helper functions ***************************
 
@@ -1101,7 +1112,6 @@ function checkLose() { if (counter === 0) { return s8(); } }
 // Handle click on timeline buttons
 function handleClickTimeline(question) {
   if (question in timelineQuest) {
-    console.log(timelineQuest[question](riddle), answer.centuries, counter);
     if (!timelineQuest[question](riddle)) {
       counter--;
       updateCounter();
@@ -1123,6 +1133,8 @@ function renderTimeline() {
   $('div.title').replaceWith('<h2>Timeline questions</h2>');
   updateCounter();
   $('.start-button').on('click', () => {
+    const intro = new sound("./audio/intro.mp3");
+    intro.play();
     s1Questions.forEach(elem => {
       const btn = document.createElement("input");
       btn.classList.add("timeline");
@@ -1415,3 +1427,4 @@ function s8() {
   $('.jumbotron').replaceWith(loose);
   $('.jumbotron').append("<br> The right answer is: " + riddle.name);
 }
+
