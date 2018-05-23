@@ -1390,7 +1390,7 @@ function s7() {
 function s8() {
   const loose = document.createElement("div");
   loose.classList.add("jumbotron", "text-center");
-  loose.innerHTML = "Sorry, you lost! Best luck next time";
+  loose.innerHTML = "Sorry, you lost! Better luck next time";
   $('.jumbotron').replaceWith(loose);
   $('.jumbotron').append("<br> The right answer is: " + riddle.name);
 }
