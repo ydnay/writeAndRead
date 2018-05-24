@@ -1101,6 +1101,7 @@ const answer = { // initial guessed celecrity
 };
 
 const intro = new sound("./audio/intro.mp3");
+const wrongAnswer = new sound("./audio/wrongAnswer.mp3");
 
 // function playIntro() {
 //   return intro.play();
@@ -1122,6 +1123,7 @@ function handleClickTimeline(question) {
   if (question in timelineQuest) {
     if (!timelineQuest[question](riddle)) {
       counter--;
+      wrongAnswer.play();
       updateCounter();
     } else {
       if (answer.centuries.length > 0) {
@@ -1171,6 +1173,7 @@ function handleClickLandmass(question) {
   if (question in landmassQuest) {
     if (!landmassQuest[question](riddle)) {
       counter--;
+      wrongAnswer.play();
       updateCounter();
     } else { // exit state condition
       s3();
@@ -1203,6 +1206,7 @@ function handleClickContinent(question) {
     console.log(continentQuest[question](riddle), answer.continent, counter);
     if (!continentQuest[question](riddle)) {
       counter--;
+      wrongAnswer.play();
       updateCounter();
     } else {
       $('i').replaceWith("<h6><i>Century-" + answer.centuries[0] + " Continent-" + answer.continent + "</i></h6>");
@@ -1274,6 +1278,7 @@ function checkCountry(country) {
     s5();
   } else {
     counter--;
+    wrongAnswer.play();
     updateCounter();
   }
 }
@@ -1296,6 +1301,7 @@ function handleClickNorthAmerica(country) {
     console.log(country);
     if (country !== riddle.country) {
       counter--;
+      wrongAnswer.play();
       updateCounter();
     } else {
       answer.country = country;
@@ -1329,6 +1335,7 @@ function handleClickField(field) {
     console.log(fieldOfCel[field](riddle), answer.continent, counter);
     if (!fieldOfCel[field](riddle)) {
       counter--;
+      wrongAnswer.play();
       updateCounter();
     } else {
       answer.mainField = field;
@@ -1362,6 +1369,7 @@ function handleClickCelebrityForm(celebrity) {
   if (celebrity) {
     if (!searchAka(celebrity)) {
       counter--;
+      wrongAnswer.play();
       updateCounter();
     } else {
       s7();
@@ -1428,6 +1436,7 @@ function s7() {
 }
 
 function s8() {
+  setTimeout(() => { intro.play(); }, 3000);
   const loose = document.createElement("div");
   loose.classList.add("jumbotron", "text-center");
   loose.innerHTML = "Sorry, you lost! Better luck next time";
