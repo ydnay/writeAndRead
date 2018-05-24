@@ -6,14 +6,20 @@
 .jumbotron {
   box-sizing: border-box;
   height: 100vh;
-  background-color: gray;
+  /* background-color: gray; */
+  background-image: url('../pics/collage.jpg');
+  /* opacity: 0.3; */
+}
+
+.title, .sub-title {
+  color: #2026BF;
 }
 
 input {
   margin-top: 10vh;
   margin-right: 20px;
   margin-bottom: 40px;
-  background-color: lightblue;
+  background-color: red;
 }
 
 img {

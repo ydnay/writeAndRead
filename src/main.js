@@ -1100,6 +1100,13 @@ const answer = { // initial guessed celecrity
   mainField: '',
 };
 
+const intro = new sound("./audio/intro.mp3");
+
+// function playIntro() {
+//   return intro.play();
+// }
+// $(document).ready(playIntro);
+
 // Update counter
 function updateCounter() {
   checkLose()
@@ -1111,6 +1118,7 @@ function checkLose() { if (counter === 0) { return s8(); } }
 
 // Handle click on timeline buttons
 function handleClickTimeline(question) {
+  intro.stop();
   if (question in timelineQuest) {
     if (!timelineQuest[question](riddle)) {
       counter--;
@@ -1133,7 +1141,6 @@ function renderTimeline() {
   $('div.title').replaceWith('<h2>Timeline questions</h2>');
   updateCounter();
   $('.start-button').on('click', () => {
-    const intro = new sound("./audio/intro.mp3");
     intro.play();
     s1Questions.forEach(elem => {
       const btn = document.createElement("input");
@@ -1390,7 +1397,7 @@ function s6() {
 }
 
 function s7() {
-  console.log('ready to s7');
+  intro.play();
   const win = document.createElement("h3");
   win.classList.add("jumbotron", "text-center");
   win.innerHTML = "CONGRATS!";
