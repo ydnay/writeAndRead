@@ -1102,6 +1102,7 @@ const answer = { // initial guessed celecrity
 
 const intro = new sound("./audio/intro.mp3");
 const wrongAnswer = new sound("./audio/wrongAnswer.mp3");
+const rightAnswer = new sound("./audio/rightAnswer.mp3");
 
 // function playIntro() {
 //   return intro.play();
@@ -1126,6 +1127,7 @@ function handleClickTimeline(question) {
       wrongAnswer.play();
       updateCounter();
     } else {
+      rightAnswer.play();
       if (answer.centuries.length > 0) {
         $('.jumbotron').append("<h6>What we know so far:</h6>");
         $('.jumbotron').append("<h6><i>Century " + answer.centuries[0] + "</i></h6>");  
@@ -1139,7 +1141,6 @@ function handleClickTimeline(question) {
 
 // Render timeline questions
 function renderTimeline() {
-  // console.log(riddle.name);
   $('div.title').replaceWith('<h2>Timeline questions</h2>');
   updateCounter();
   $('.start-button').on('click', () => {
@@ -1153,6 +1154,8 @@ function renderTimeline() {
       $('.jumbotron').append(btn);
     });
     $('.start-button').hide();
+    $('.jumbotron').append('<p>Let\'s find out the century our celebrity lived on!</p>');
+    $('.jumbotron').append('<p>Keep in mind:</p>');
     $('.jumbotron').append('<p>Middle Ages: Aproximatelly from 5th to 15th Century</p>');
     $('.jumbotron').append('<p>French Revolution: Late 18th Century</p>')
   });
@@ -1176,6 +1179,7 @@ function handleClickLandmass(question) {
       wrongAnswer.play();
       updateCounter();
     } else { // exit state condition
+      rightAnswer.play();
       s3();
     }
   } else {
@@ -1209,6 +1213,7 @@ function handleClickContinent(question) {
       wrongAnswer.play();
       updateCounter();
     } else {
+      rightAnswer.play();
       $('i').replaceWith("<h6><i>Century-" + answer.centuries[0] + " Continent-" + answer.continent + "</i></h6>");
       if (answer.continent === 'Europe') {
         s4Europe();
@@ -1275,6 +1280,7 @@ function checkCountry(country) {
   if (country === riddle.country) {
     answer.country = country;
     res = true;
+    rightAnswer.play();
     s5();
   } else {
     counter--;
@@ -1305,6 +1311,7 @@ function handleClickNorthAmerica(country) {
       updateCounter();
     } else {
       answer.country = country;
+      rightAnswer.play();
       s5();
     }
   } else {
@@ -1339,6 +1346,7 @@ function handleClickField(field) {
       updateCounter();
     } else {
       answer.mainField = field;
+      rightAnswer.play();
       s6();
     }
   } else {
@@ -1353,7 +1361,6 @@ function s5() {
   $('form, input').hide();
   console.log(s5Questions);
   s5Questions.forEach(elem => {
-    console.log(elem);
     const btn = document.createElement("input");
     btn.classList.add("field");
     btn.type = "button";
@@ -1372,6 +1379,7 @@ function handleClickCelebrityForm(celebrity) {
       wrongAnswer.play();
       updateCounter();
     } else {
+      rightAnswer.play();
       s7();
     }
   } else {
@@ -1433,14 +1441,16 @@ function s7() {
       break; 
   }
   $('.jumbotron').append("<br><img src=./pics/" + source + ">");
+  setTimeout(() => { location.reload(); }, 30000);
 }
 
 function s8() {
   setTimeout(() => { intro.play(); }, 3000);
-  const loose = document.createElement("div");
+  const loose = document.createElement("h3");
   loose.classList.add("jumbotron", "text-center");
   loose.innerHTML = "Sorry, you lost! Better luck next time";
   $('.jumbotron').replaceWith(loose);
-  $('.jumbotron').append("<br> The right answer is: " + riddle.name);
+  $('.jumbotron').append("<br><br><h4>The celebrity was: </h4><br><h2>" + riddle.name + "</h2>");
+  setTimeout(() => { location.reload(); }, 10000);
 }
 
