@@ -1130,7 +1130,7 @@ function handleClickTimeline(question) {
       rightAnswer.play();
       if (answer.centuries.length > 0) {
         $('.jumbotron').append("<h6>What we know so far:</h6>");
-        $('.jumbotron').append("<h6><i>Century " + answer.centuries[0] + "</i></h6>");  
+        $('.jumbotron').append("<h6><i>Century: " + answer.centuries[0] + "</i></h6>");  
       }
       s1(); // pros: after...questions don't exit state. cons: pushes century twice
     }
@@ -1154,7 +1154,7 @@ function renderTimeline() {
       $('.jumbotron').append(btn);
     });
     $('.start-button').hide();
-    $('.jumbotron').append('<p>Let\'s find out the century our celebrity lived on!</p>');
+    $('.jumbotron').append('<p>Let\'s find out the century our celebrity lived in!</p>');
     $('.jumbotron').append('<p>Keep in mind:</p>');
     $('.jumbotron').append('<p>Middle Ages: Aproximatelly from 5th to 15th Century</p>');
     $('.jumbotron').append('<p>French Revolution: Late 18th Century</p>')
@@ -1207,14 +1207,13 @@ const s3Questions = Object.keys(continentQuest);
 // Handle click on continent buttons
 function handleClickContinent(question) {
   if (question in continentQuest) {
-    console.log(continentQuest[question](riddle), answer.continent, counter);
     if (!continentQuest[question](riddle)) {
       counter--;
       wrongAnswer.play();
       updateCounter();
     } else {
       rightAnswer.play();
-      $('i').replaceWith("<h6><i>Century-" + answer.centuries[0] + " Continent-" + answer.continent + "</i></h6>");
+      $('i').replaceWith("<h6><i>Century: " + answer.centuries[0] + " Continent: " + answer.continent + "</i></h6>");
       if (answer.continent === 'Europe') {
         s4Europe();
       } else if (answer.continent === 'North America') {
@@ -1257,7 +1256,7 @@ function s3() {
 // S4, Continent Cases
 // Europe
 function handleClickCoastal(cel) {
-  const guessCountry = document.createElement("input"); guessCountry.classList.add("guess-country"); guessCountry.type = "text"; guessCountry.placeholder = "Country";
+  const guessCountry = document.createElement("input"); guessCountry.classList.add("guess-country"); guessCountry.type = "text"; guessCountry.placeholder = "Country Case Sensitive";
   const submitCountry = document.createElement("input"); submitCountry.type = "button"; submitCountry.value = "check";
   const euroForm = document.createElement("form"); euroForm.appendChild(guessCountry); euroForm.appendChild(submitCountry);
   submitCountry.onclick = () => { checkCountry(guessCountry.value); }
@@ -1265,10 +1264,10 @@ function handleClickCoastal(cel) {
 
   if (cel) {
     if (!isCoastal(cel)) {
-      $('i').replaceWith("<h6><i>Century:" + answer.centuries[0] + " Continent:" + answer.continent + " Coasts: No coasts</i></h6>");
+      $('i').replaceWith("<h6><i>Century: " + answer.centuries[0] + " Continent: " + answer.continent + " Coasts: No coasts</i></h6>");
       counter--;
     } else {
-      $('i').replaceWith("<h6><i>Century:" + answer.centuries[0] + " Continent:" + answer.continent + " Coasts:" + answer.coasts + "</i></h6>");
+      $('i').replaceWith("<h6><i>Century: " + answer.centuries[0] + " Continent: " + answer.continent + " Coasts: " + answer.coasts + " </i></h6>");
     } 
   } else {
     console.log('err handleClickCoastal()');
@@ -1290,7 +1289,6 @@ function checkCountry(country) {
 }
 
 function s4Europe() {
-  console.log('ready to s4');
   $('h2').replaceWith('<h2>Europe questions</h2>');
   $('.continent').hide();
   const coastal = document.createElement("input");
@@ -1304,7 +1302,6 @@ function s4Europe() {
 // North America
 function handleClickNorthAmerica(country) {
   if (country) {
-    console.log(country);
     if (country !== riddle.country) {
       counter--;
       wrongAnswer.play();
@@ -1320,7 +1317,6 @@ function handleClickNorthAmerica(country) {
 }
 
 function s4NorthAmerica() {
-  console.log('ready to s4');
   $('h2').replaceWith('<h2>North America questions</h2>');
   $('.continent').hide();
   northAmericanCountries.forEach(elem => {
@@ -1337,9 +1333,7 @@ const s5Questions = Object.keys(fieldOfCel);
 
 // Handle click field buttons
 function handleClickField(field) {
-  console.log('hey');
   if (field in fieldOfCel) {
-    console.log(fieldOfCel[field](riddle), answer.continent, counter);
     if (!fieldOfCel[field](riddle)) {
       counter--;
       wrongAnswer.play();
@@ -1355,11 +1349,9 @@ function handleClickField(field) {
 }
 
 function s5() {
-  console.log('ready to s5');
-  $('i').replaceWith("<h6><i>Century:" + answer.centuries[0] + " Country:" + answer.country + "</i></h6>");
+  $('i').replaceWith("<h6><i>Century: " + answer.centuries[0] + " Country: " + answer.country + "</i></h6>");
   $('h2').replaceWith('<h2>Field of Celebrity Questions</h2>');
   $('form, input').hide();
-  console.log(s5Questions);
   s5Questions.forEach(elem => {
     const btn = document.createElement("input");
     btn.classList.add("field");
@@ -1400,18 +1392,18 @@ function searchAka(name) {
 }
 
 function s6() {
-  console.log('ready to s6');
   $('input').hide();
-  $('i').replaceWith("<h6><i>Century:" + answer.centuries[0] + ", Country:" + answer.country + "</i></h6>");
+  $('i').replaceWith("<h6><i>Century: " + answer.centuries[0] + ", Country: " + answer.country + "</i></h6>");
   $('.jumbotron').append("<h6><i>a notorious " + answer.mainField + ", " + riddle.sex + "</i></h6>");
   $('.jumbotron').append("<h6><i>" + riddle.tip + "</i></h6>");
-  const guessCelebrity = document.createElement("input"); guessCelebrity.classList.add("guess-celebrity"); guessCelebrity.type = "text"; guessCelebrity.placeholder = "Celebrity";
+  const guessCelebrity = document.createElement("input"); guessCelebrity.classList.add("guess-celebrity"); guessCelebrity.type = "text"; guessCelebrity.placeholder = "Name Case Sensitive";
   const submitCelebrity = document.createElement("input"); submitCelebrity.type = "button"; submitCelebrity.value = "check";
   const celebrityForm = document.createElement("form"); celebrityForm.appendChild(guessCelebrity); celebrityForm.appendChild(submitCelebrity);
   submitCelebrity.onclick = () => { handleClickCelebrityForm(guessCelebrity.value); }
   $('.jumbotron').append(celebrityForm);
 }
 
+// S7, Win game
 function s7() {
   intro.play();
   const win = document.createElement("h3");
@@ -1444,6 +1436,7 @@ function s7() {
   setTimeout(() => { location.reload(); }, 30000);
 }
 
+// Garbage Collection
 function s8() {
   setTimeout(() => { intro.play(); }, 3000);
   const loose = document.createElement("h3");
